@@ -9,7 +9,7 @@ function startQR(setQR: (qr: number) => void, setStudentHash: (studentHash: stri
     const video = document.getElementById('video') as HTMLVideoElement
 
     const qrScanner = new QrScanner(video, (decodedText) => {
-        axios.post("http://localhost:8080/verify", JSON.stringify({ hash: decodedText }), {
+        axios.post("http://188.166.215.158:8080/verify", JSON.stringify({ hash: decodedText }), {
             headers: {
                 "Content-Type": "application/json"
             }
@@ -32,7 +32,7 @@ function startQR(setQR: (qr: number) => void, setStudentHash: (studentHash: stri
 function submitCompliment(hash: string, myHash: string) {
     const value = (document.querySelector('.vf_new_input') as HTMLInputElement).value
 
-    axios.post("http://localhost:8080/createCompliment", JSON.stringify({ value, hash, myHash }), {
+    axios.post("http://188.166.215.158:8080/createCompliment", JSON.stringify({ value, hash, myHash }), {
         headers: {
             'Content-Type': 'application/json'
         }

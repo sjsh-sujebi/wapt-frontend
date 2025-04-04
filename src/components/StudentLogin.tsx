@@ -22,7 +22,7 @@ function clickListener(setWarning: (msg: string) => void) {
         return
     }
 
-    axios.post("http://172.30.2.247:8080/login", JSON.stringify(data), {
+    axios.post("http://localhost:8080/login", JSON.stringify(data), {
         headers: {
             'Content-Type': 'application/json'
         }

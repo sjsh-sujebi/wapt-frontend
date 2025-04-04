@@ -29,7 +29,7 @@ function clickListener(setWarning: (msg: string) => void) {
 
         const data = { keyword1, keyword2, keyword3, gradeNumber, classNumber, studentNumber, base64Image }
 
-        axios.post("http://188.166.215.158:8080/register", JSON.stringify(data), {
+        axios.post("https://api.sujebi.tech:8443/register", JSON.stringify(data), {
             headers: {
                 'Content-Type': 'application/json'
             }

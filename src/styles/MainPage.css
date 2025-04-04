@@ -1,0 +1,57 @@
+.mp_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    justify-content: center;
+    animation: fadein 2s;
+}
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.mp_title_card > h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+}
+
+.mp_get_started_btn {
+    padding: 10px;
+    border: none;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    width: 250px;
+}
+
+.mp_get_started_btn:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.mp_start_page_wrapper {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    height: 50vh;
+    align-items: center;
+}
+
+.mp_input_forms {
+    display: flex;
+    justify-content: center;
+}

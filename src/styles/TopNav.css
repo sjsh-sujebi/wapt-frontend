@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+
+:root {
+    --nav-height: 80.8px;
+    --nav-color: rgb(205, 205, 205)
+}
+
+.navbar {
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    min-width: 400px;
+    justify-content: space-around;
+    border-bottom: 1px solid var(--nav-color);
+}
+
+.navbar-title {
+    cursor: pointer;
+}
+
+.navbar-burger {
+    display: flex;
+    flex-direction: column;
+    width: 35px;
+    cursor: pointer;
+}
+
+.navbar-burger-line {
+    display: block;
+    height: 4px;
+    width: 100%;
+    margin: 4px;
+    border-radius: 10px;
+    background: #0e2431;
+}
+
+.navbar-burger-line-active:first-child {
+    animation: rotate_cw 0.2s linear forwards;
+}
+
+.navbar-burger-line-active:nth-child(2) {
+    display: none;
+}
+
+.navbar-burger-line-active:last-child {
+    animation: rotate_ccw 0.2s linear forwards;    
+}
+
+@keyframes rotate_cw {
+    0% {
+        transform: rotate(0) translate(0, 0);
+        
+    }
+    100% {
+        transform: rotate(0.125turn) translateX(4px) translateY(4px);
+    }
+}
+
+@keyframes rotate_ccw {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(-0.125turn) translateX(4px) translateY(-4px);
+    }
+}
+
+.navbar-menu {
+    display: none;
+}
+
+.navbar-menu > span {
+    width: 100px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.navbar-menu > span:hover {
+    cursor: pointer;
+}
+
+.navbar-menu-help:hover {
+    background-color: rgb(234, 234, 234);
+}
+
+.navbar-menu-login {
+    background-color: black;
+    font-weight: 1000;
+    color: white;
+}
+
+@media screen and (min-width: 700px) {
+    .navbar-burger {
+        display: none;
+    }
+
+    .navbar-menu {
+        display: block;
+    }
+}

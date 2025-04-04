@@ -1,0 +1,25 @@
+.hp_container {
+    display: flex;
+    height: 80vh;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hp_container > h1 {
+    margin: 70px;
+}
+
+.hp_logout {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    margin: 40px 0 40px 0;
+    width: 150px;
+}
+
+.hp_logout:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}

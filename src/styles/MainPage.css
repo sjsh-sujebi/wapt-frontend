@@ -4,13 +4,35 @@
     justify-content: center;
     height: 80vh;
     justify-content: center;
-    animation: fadein 2s;
 }
 
-@keyframes fadein {
+.mp_title_card {
+    animation: godown 2s;
+}
+
+.mp_get_help_btn, .mp_get_started_btn {
+    animation: goup 2s;
+}
+
+@keyframes godown {
     0% {
         opacity: 0;
         transform: translateY(-100px);
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes goup {
+    0% {
+        opacity: 0;
+        transform: translateY(100px);
     }
 
     80% {
@@ -29,6 +51,11 @@
     font-size: 50px;
 }
 
+.mp_button_group {
+    display: flex;
+    flex-direction: column;
+}
+
 .mp_get_started_btn {
     padding: 10px;
     border: none;
@@ -36,6 +63,22 @@
     color: white;
     border-radius: 10px;
     width: 250px;
+}
+
+.mp_get_help_btn {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: none;
+    background-color: white;
+    color: black;
+    border: 2px solid rgb(95, 95, 95);
+    border-radius: 10px;
+    width: 250px;
+}
+
+.mp_get_help_btn:hover {
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
 .mp_get_started_btn:hover {

@@ -28,8 +28,9 @@ function clickListener(setWarning: (msg: string) => void) {
         }
     }).then(res => {
         console.log(res)
-        if ((res.data as string).startsWith('ok:')) {
-            window.localStorage.setItem("studentHash", (res.data as string).split("ok:")[1])
+        const response = res.data as APIResponse
+        if (response.is_success) {
+            window.localStorage.setItem("studentHash", response.payload.userHash)
             window.location.href = "/mypage"
         }
     })

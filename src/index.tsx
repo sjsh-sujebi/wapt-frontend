@@ -10,6 +10,7 @@ import HomePage from "./components/HomePage";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import StudentLogin from './components/StudentLogin';
 import Verify from './components/Verify';
+import HowToUse from './components/HowToUse';
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,12 @@ const router = createBrowserRouter([
     path: '/verify',
     element: (
       <App child={<Verify />} />
+    )
+  },
+  {
+    path: '/usage',
+    element: (
+      <App child={<HowToUse />} />
     )
   }
 ])

@@ -22,8 +22,8 @@ export default function TopNav({hash, toggleHome, toggleMenu, toggleLogin, toggl
         <div className="navbar">
             <h1 className="navbar-title" onClick={() => burgerDefault(toggleHome)}>SuJeBI</h1>
             <div className="navbar-menu">
-                <span className="navbar-menu-help">사용법</span>
-                <span className="navbar-menu-help" onClick={() => window.location.href = "/verify"}>인증하기</span>
+                <span className="navbar-menu-help" onClick={() => window.location.href = "/usage"}>사용법</span>
+                <span className="navbar-menu-help" onClick={() => window.location.href = "/verify"}>칭찬하기</span>
                 { hash ? <span className="navbar-menu-login" onClick={() => burgerDefault(toggleMyPage)}>마이 페이지</span> : <span className="navbar-menu-login" onClick={() => burgerDefault(toggleLogin)}>로그인</span> }
                 
             </div>

@@ -18,7 +18,10 @@ export default function MainPage() {
                     </h1>
                     <div>세종과학고등학교 재학생 인증 서비스</div>
                 </div>
-                <button className="mp_get_started_btn" onClick={() => window.location.href = whereToGo}>블록체인 인증 시작하기</button>
+                <div className="mp_button_group">
+                    <button className="mp_get_help_btn" onClick={() => window.location.href = "/usage"}>수제비 사용법 익히기</button>
+                    <button className="mp_get_started_btn" onClick={() => window.location.href = whereToGo}>블록체인 인증 시작하기</button>
+                </div>
             </div>
         </div>
     )

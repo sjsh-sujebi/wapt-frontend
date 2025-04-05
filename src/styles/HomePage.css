@@ -1,6 +1,5 @@
 .hp_container {
     display: flex;
-    height: 80vh;
     flex-direction: column;
     align-items: center;
 }
@@ -22,4 +21,15 @@
 .hp_logout:hover {
     cursor: pointer;
     transform: scale(1.1);
+}
+
+.hp_compliment_card {
+    padding: 40px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+.hp_compliment_card:hover {
+    background-color: aliceblue;
+    cursor: pointer;
 }

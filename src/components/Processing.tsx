@@ -1,7 +1,16 @@
-import React from "react"
+import React, { useEffect } from "react"
 import "../styles/Processing.css"
 
 export default function Processing() {
+    const hash = localStorage.getItem("studentHash")
+
+    useEffect(() => {
+        if (hash) {
+            (document.querySelector(".pr_done") as HTMLSpanElement).style.width = "60vw";
+            (document.querySelector(".pr_not_done") as HTMLSpanElement).style.width = "0vw";
+        }
+    }, [])
+
     return (
         <div className="pr_container">
             <div className="pr_title_card">

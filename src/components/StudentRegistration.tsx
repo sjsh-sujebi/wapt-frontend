@@ -34,7 +34,8 @@ function clickListener(setWarning: (msg: string) => void) {
                 'Content-Type': 'application/json'
             }
         }).then(res => {
-            if (res.data == 'ok') {
+            const response = res.data as APIResponse
+            if (response.is_success) {
                 window.location.href = "/processing"
             }
         })

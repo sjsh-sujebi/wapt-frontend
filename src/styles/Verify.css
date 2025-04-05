@@ -12,14 +12,65 @@
 .vf_qr {
     background-color: black;
     color: white;
-    padding: 10px;
+    padding: 20px;
+    bottom: 50px;
+    position: absolute;
     border: none;
     border-radius: 10px;
     margin: 40px 0 40px 0;
-    width: 150px;
+    width: 300px;
 }
 
 .vf_qr:hover {
     cursor: pointer;
     transform: scale(1.1);
+}
+
+.vf_success {
+    background-color: rgb(134, 194, 134);
+    border-radius: 10px;
+    height: 50px;
+    display: flex;
+    padding: 10px 30px;
+    align-items: center;
+    width: 500px;
+}
+
+.vf_new_input_card {
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+}
+
+.vf_video {
+    position: absolute;
+    top: 20vh;
+    left: 25vw;
+    width: 50vw;
+}
+
+.vf_new_input {
+    border-radius: 10px;
+    padding: 10px;
+    border: 2px solid black;
+    margin: 10px;
+    width: 400px;
+}
+
+.vf_submit {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    width: 150px;
+    border: none;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.vf_submit:hover {
+    transform: scale(1.1);
+    cursor: pointer;
 }

@@ -1,12 +1,16 @@
 import React from "react"
 import "../styles/HowToUse.css"
 
+function clip(tag: string) {
+    window.location.href = `#${tag}`
+}
+
 export default function HowToUse() {
     return (
         <div className="htu_container">
             <h1>수제비 사용법! 😎</h1>
 
-            <h2>회원가입</h2>
+            <h2 id="register" onClick={() => clip("register")}>회원가입</h2>
             <img src="/0.png" alt="" />
             <div>
             처음 들어왔을 때는 "블록체인 인증 시작하기" 버튼을 눌렀을 때, 바로 회원가입 페이지로 넘어갑니다.
@@ -27,14 +31,18 @@ export default function HowToUse() {
             <div>
             끝입니다! CPU 부원에 의해 인증 절차 및 블록체인 등록이 진행될 것이며, 시간이 걸릴 수 있습니다.
             </div>
+            <br />
+            <br />
 
-            <h2>로그인</h2>
+            <h2 id="login" onClick={() => clip("login")}>로그인</h2>
             <img src="/0.png" alt="" />
             <div>
             우측 상단의 로그인 버튼을 클릭하고 로그인을 진행합니다. 회원가입을 한 지 얼마 되지 않았다면, 승인이 아직 진행되지 않아 로그인이 되지 않을 수 있습니다.
             </div>
+            <br />
+            <br />
 
-            <h3>마이 페이지</h3>
+            <h2 id="mypage" onClick={() => clip("mypage")}>마이 페이지</h2>
             <img src="/5.png" alt="" />
             <div>
             우측 상단에서 로그인 버튼이 마이 페이지 버튼으로 바뀐 것을 확인합니다.
@@ -47,13 +55,14 @@ export default function HowToUse() {
             <div>
             아래로 살짝 내리면 친구들이 나에게 한 칭찬들의 목록을 볼 수 있습니다. 처음이라면 아무것도 없는 것이 정상입니다.
             </div>
+            <br />
+            <br />
 
-            <h3>칭찬하기</h3>
+            <h2 id="compliment" onClick={() => clip("compliment")}>칭찬하기</h2>
             <img src="/5.png" alt="" />
             <div>
             우측 상단에서 칭찬하기 버튼을 클릭합니다.
             </div>
-
             <img src="/8.png" alt="" />
             <div>
             버튼을 눌러 칭찬할 친구의 QR코드를 촬영합니다. 카메라 권한을 허용해 주세요. QR코드가 자동으로 인식되면 카메라가 닫힙니다.

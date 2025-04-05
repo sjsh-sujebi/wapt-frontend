@@ -13,16 +13,21 @@
 }
 
 .htu_container > h1 {
-    margin: 40px;
+    margin: 80px;
+    margin-top: 80px;
 }
 
 .htu_container > h2 {
     margin: 20px;
-    background-color: rgb(224, 224, 224) !important;
+    background-color: rgb(240, 240, 240) !important;
     padding: 20px;
     text-align: center;
     border-radius: 10px;
     width: calc(80vw - 40px);
+}
+
+.htu_container > h2:hover {
+    cursor: pointer;
 }
 
 .htu_container > img {

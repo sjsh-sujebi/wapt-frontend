@@ -6,3 +6,19 @@
   font-family: 'Quicksand', sans-serif;
   font-weight: 500;
 }
+
+.sdownfont {
+  font-weight: 300;
+}
+
+.mdownfont {
+  font-weight: 400;
+}
+
+.downfont {
+  font-weight: 200;
+}
+
+.upfont {
+  font-weight: 800;
+}

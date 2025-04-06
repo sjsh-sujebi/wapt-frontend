@@ -8,10 +8,19 @@
 
 .mp_title_card {
     animation: godown 2s;
+    max-width: 850px;
 }
 
 .mp_get_help_btn, .mp_get_started_btn {
     animation: goup 2s;
+}
+
+@media screen and (max-width: 850px){ 
+    .mp_title_card {
+        animation: godown 2s;
+        max-width: 80vw;
+        margin-bottom: 50px;
+    }
 }
 
 @keyframes godown {

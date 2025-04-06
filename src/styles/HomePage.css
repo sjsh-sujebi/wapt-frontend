@@ -27,9 +27,15 @@
     padding: 40px;
     border-radius: 10px;
     margin-bottom: 40px;
+    width: calc(80vw - 80px);
+    font-size: 1.3rem;
 }
 
 .hp_compliment_card:hover {
     background-color: aliceblue;
     cursor: pointer;
+}
+
+@media screen and (max-width: 850px){ 
+
 }

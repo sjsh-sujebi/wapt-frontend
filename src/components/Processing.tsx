@@ -6,8 +6,8 @@ export default function Processing() {
 
     useEffect(() => {
         if (hash) {
-            (document.querySelector(".pr_done") as HTMLSpanElement).style.width = "60vw";
-            (document.querySelector(".pr_not_done") as HTMLSpanElement).style.width = "0vw";
+            (document.querySelector(".pr_done") as HTMLSpanElement).style.width = "100%";
+            (document.querySelector(".pr_not_done") as HTMLSpanElement).style.width = "0%";
         }
     }, [])
 

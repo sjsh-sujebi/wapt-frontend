@@ -8,6 +8,7 @@ footer {
     justify-content: center;
     flex-direction: column;
     margin-top: 100px;
+    min-width: 360px;
 }
 
 footer > p > a {

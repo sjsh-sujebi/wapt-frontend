@@ -7,7 +7,7 @@
     display: flex;
     padding: 20px;
     align-items: center;
-    min-width: 400px;
+    min-width: 420px;
     justify-content: space-around;
     border-bottom: 1px solid var(--nav-color);
 }

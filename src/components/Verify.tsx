@@ -46,7 +46,7 @@ export default function HomePage() {
     
     const default_return = (
         <div className="vf_container">
-            <h1>SuJeBI로 친구 칭찬하기</h1>
+            <h1 className="vf_title"><span className="upfont">SuJeBI</span>로 친구 칭찬하기</h1>
             <button className="vf_qr" onClick={() => startQR(setStatus, setStudentHash, setSuccess)}>칭찬 받을 친구의 QR 코드 촬영</button>
 
             <video id="video" className="vf_video" style={status == 1 ? {display: "block"} : {display: "none"}}></video>

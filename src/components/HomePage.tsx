@@ -23,7 +23,7 @@ function getCompliments(setCompliments: (compliments: Compliment[]) => void, has
             const myDate = new Date(parseInt(c.timestamp))
             const date = myDate.getFullYear() + "/" + (myDate.getMonth() + 1) + "/" + myDate.getDate() + " " + myDate.getHours() + "시 " + myDate.getMinutes() + "분";
             
-            return { from: c.from, message: c.message, timestamp: date }
+            return { from: c.from.slice(0, 8), message: c.message, timestamp: date }
         }).reverse())
     })
 }
@@ -52,7 +52,7 @@ export default function HomePage() {
             <h1 className="mdownfont">나의 칭찬 리스트</h1>
             { compliments.map(c => 
                 <div className="hp_compliment_card">
-                    <h2 className="hp_compliment_title"><span className="upfont">From</span>: {c.from}</h2>
+                    <p className="hp_compliment_title">발행자: <span className="mdownfont">{c.from}</span></p>
                     <p className="hp_compliment_timestamp">발행 시각: <span className="sdownfont">{c.timestamp}</span></p>
                     <p className="hp_compliment_msg">칭찬 내용: <span className="sdownfont">{c.message}</span></p>
                 </div>)

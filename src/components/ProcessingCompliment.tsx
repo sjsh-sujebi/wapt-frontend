@@ -8,8 +8,8 @@ function submitCompliment(value: string, hash: string, myHash: string, setSucces
             'Content-Type': 'application/json'
         }
     }).then(res => {
-        (document.querySelector(".pr_done") as HTMLSpanElement).style.width = "60vw";
-        (document.querySelector(".pr_not_done") as HTMLSpanElement).style.width = "0vw";
+        (document.querySelector(".pr_done") as HTMLSpanElement).style.width = "100%";
+        (document.querySelector(".pr_not_done") as HTMLSpanElement).style.width = "9%";
         (document.querySelector(".pr_title_card") as HTMLDivElement).style.marginBottom = "15px";
         (document.querySelector(".pr_title_card > h1") as HTMLDivElement).innerHTML = "블록체인에 칭찬 등록 완료!";
         (document.querySelector(".pr_title_card > div") as HTMLDivElement).style.display = "none"
@@ -46,8 +46,8 @@ export default function ProcessingCompliment({ msg, hashTo }: { msg: string, has
         }
 
         submitCompliment(msg, hashTo, hash, setSuccess);
-        (document.querySelector(".pr_done") as HTMLSpanElement).style.width = "30vw";
-        (document.querySelector(".pr_not_done") as HTMLSpanElement).style.width = "30vw";
+        (document.querySelector(".pr_done") as HTMLSpanElement).style.width = "50%";
+        (document.querySelector(".pr_not_done") as HTMLSpanElement).style.width = "50%";
     }, [hash])
 
     return (

@@ -14,7 +14,7 @@
 
 .navbar-title {
     cursor: pointer;
-    z-index: 1;
+    z-index: 2;
 }
 
 .navbar-burger {
@@ -22,6 +22,7 @@
     flex-direction: column;
     width: 35px;
     cursor: pointer;
+    z-index: 2;
 }
 
 .navbar-burger-line {
@@ -110,7 +111,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 0;
+    z-index: 1;
+    min-width: 460px !important;
 }
 
 .navbar-menu-expanded > .navbar-menu-help, .navbar-menu-expanded > .navbar-menu-login {

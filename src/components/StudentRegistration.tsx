@@ -37,6 +37,8 @@ function clickListener(setWarning: (msg: string) => void) {
             const response = res.data as APIResponse
             if (response.is_success) {
                 window.location.href = "/processing"
+            } else {
+                alert(response.payload.msg)
             }
         })
 	}

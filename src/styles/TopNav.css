@@ -7,7 +7,7 @@
     display: flex;
     padding: 20px;
     align-items: center;
-    min-width: 420px;
+    min-width: 320px;
     justify-content: space-around;
     border-bottom: 1px solid var(--nav-color);
 }
@@ -112,7 +112,7 @@
     justify-content: center;
     align-items: center;
     z-index: 1;
-    min-width: 460px !important;
+    min-width: 360px !important;
 }
 
 .navbar-menu-expanded > .navbar-menu-help, .navbar-menu-expanded > .navbar-menu-login {

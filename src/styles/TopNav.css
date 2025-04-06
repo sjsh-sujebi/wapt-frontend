@@ -14,6 +14,7 @@
 
 .navbar-title {
     cursor: pointer;
+    z-index: 1;
 }
 
 .navbar-burger {
@@ -96,4 +97,26 @@
     .navbar-menu {
         display: block;
     }
+}
+
+.navbar-menu-expanded {
+    width: 100%;
+    height: 100vh;
+    background-color: #f7f7f7;
+    position: absolute;
+    top:0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 0;
+}
+
+.navbar-menu-expanded > .navbar-menu-help, .navbar-menu-expanded > .navbar-menu-login {
+    text-align: center;
+}
+
+.navbar-menu-expanded > .navbar-menu-help:hover {
+    background-color: #e9e9e9;
 }

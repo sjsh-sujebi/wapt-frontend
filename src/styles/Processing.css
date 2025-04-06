@@ -10,6 +10,7 @@
 .pr_return_card {
     display: flex;
     justify-content: center;
+    align-self: center;
 }
 
 .pr_return_card > button {
@@ -20,6 +21,8 @@
     border-radius: 10px;
     background-color: black;
     color: white;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .pr_return_card > button:hover {
@@ -38,7 +41,6 @@
     justify-content: center;
     flex-direction: column;
     justify-self: center;
-    min-width: 400px;
 }
 
 .pr_status_text {
@@ -87,4 +89,17 @@
     justify-self: center;
     width: 500px;
     margin: 20px;
+}
+
+@media screen and (max-width: 500px) {
+    .pr_container {
+        width: 100vw;
+        min-width: 350px;
+    }
+
+    .pr_container > * {
+        width: 80vw;
+        font-size: small;
+        min-width: 350px;
+    }
 }

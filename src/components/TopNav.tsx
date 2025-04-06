@@ -3,6 +3,9 @@ import "../styles/TopNav.css"
 
 const burgerClick = (callback: () => void) => {
     let burger = document.querySelector(".navbar-burger")!!
+    const contents = document.querySelector(".navbar-menu")!!
+    contents.classList.toggle("navbar-menu-expanded")
+
     for (const child of burger.children) {
         child.classList.toggle("navbar-burger-line-active")
         callback()
@@ -11,6 +14,9 @@ const burgerClick = (callback: () => void) => {
 
 const burgerDefault = (callback: () => void) => {
     let burger = document.querySelector(".navbar-burger")!!
+    const contents = document.querySelector(".navbar-menu")!!
+    contents.classList.remove("navbar-menu-expanded")
+    
     for (const child of burger.children) {
         child.classList.remove("navbar-burger-line-active")
         callback()

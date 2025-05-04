@@ -11,6 +11,7 @@
 
 .us_submit_deactivated:hover {
     cursor: not-allowed !important;
+    transform: none !important;
 }
 
 .us_submit_deactivated {
@@ -19,7 +20,7 @@
 }
 
 .us_container > h1 {
-    margin: 70px;
+    margin: 100px;
 }
 
 .us_no_display {
@@ -38,13 +39,22 @@
     padding: 0px 30px;
     align-items: center;
     width: 500px;
+    justify-content: center;
 }
 
 .us_file_send_popup_background {
     position: fixed;
     width: 100vw;
     height: 100vh;
-    opacity: 0.5;
+    top: 0;
+    left: 0;
+    background-color: gray;
+    z-index: 100;
+    opacity: 0.3;
+}
+
+.us_file_send_popup_background:hover {
+    cursor: pointer;
 }
 
 .us_success {
@@ -56,6 +66,7 @@
     align-items: center;
     width: calc(80vw - 20px);
     max-width: 380px;
+    justify-content: center;
 }
 
 .us_new_input_card {
@@ -76,6 +87,10 @@
     margin: 10px;
     max-width: 400px;
     width: 80vw;
+}
+
+.us_file_input {
+    text-align: center;
 }
 
 .us_submit {
@@ -115,6 +130,7 @@
     background-color: white;
     border-radius: 10px;
     padding: 50px;
+    z-index: 101;
 }
 
 .us_curr_token_div {

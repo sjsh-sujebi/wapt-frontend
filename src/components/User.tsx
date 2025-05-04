@@ -1,12 +1,13 @@
-import React, { ReactElement, useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import "../styles/User.css"
 import axios from "axios";
-import { createRandomCode, openChannel, uploadToChannel } from "../utils/firebase";
-import { editableInputTypes } from "@testing-library/user-event/dist/utils";
+import { uploadToChannel } from "../utils/firebase";
 
 const connectToPrinter = (setCode: (code: number) => void, setWarning: (warning: string) => void, setStatus: (status: number) => void) => {
     const printerNumberString = (document.querySelector("#printerNumber") as HTMLInputElement).value
     const printerNumberInt = parseInt(printerNumberString, 10)
+
+    document.querySelector(".us_submit")?.classList.add("us_submit_deactivated")
 
     if (isNaN(printerNumberInt)) {
         setWarning("유효하지 않은 숫자입니다.")
@@ -39,13 +40,14 @@ function transaction(userHash: string, callback: () => void) {
     })
 }
 
-function sign_transaction(myHash: string, selectedFile: File, code: number) {
+function sign_transaction(set_success: (msg: string) => void, myHash: string, selectedFile: File, code: number) {
+    document.querySelector("#verify_payment")?.classList.add("us_submit_deactivated")
     transaction(myHash, () => {
         const reader = new FileReader()
         reader.readAsDataURL(selectedFile)
         reader.onload = function (e) {
             const base64File = reader.result
-            
+            console.log(selectedFile.type)
             const data = { fileName: selectedFile.name, contentType: selectedFile.type, base64File }
             
             axios.post("/.netlify/functions/upload", JSON.stringify(data), {
@@ -56,6 +58,9 @@ function sign_transaction(myHash: string, selectedFile: File, code: number) {
                 const response = res.data as APIResponse
                 if (response.is_success) {
                     uploadToChannel(code.toString(), response.payload.blobId, response.payload.fileName)
+                    set_success(`성공적으로 파일을 전송하였습니다!`)
+                    document.querySelector(".us_file_send_popup")?.classList.add("us_no_display")
+                    document.querySelector(".us_file_send_popup_background")?.classList.add("us_no_display")
                 } else {
                     alert("BlobUploadError: 오류가 발생했습니다. 개발자에게 문의해주세요.")
                 }
@@ -68,6 +73,7 @@ export default function User() {
     const [code, setCode] = useState(0)
     const [status, setStatus] = useState(0)  // 0: initial, 1: blob downloaded
     const [warning, setWarning] = useState("")
+    const [success, setSuccess] = useState("")
     const [currentTokens, setCurrentTokens] = useState(-1)
     const [selectedFile, setSelectedFile] = useState<File | null>(null)
 
@@ -124,22 +130,23 @@ export default function User() {
         <div className="us_container">
             <h1 className="us_title">프린터 컴퓨터에 제시된 번호를 입력하세요</h1>
             { warning ? <div className="us_warning">{warning}</div> : null }
-            <input type="text" className="us_new_input" id="printerNumber" placeholder="예시) 8080" />
+            <input type="text" className="us_new_input" id="printerNumber" autoComplete="off" placeholder="예시) 8080" />
             <input type="button" className='us_submit' onClick={() => connectToPrinter(setCode, setWarning, setStatus)} value="프린터와 연결하기" />
         </div>
     )
 
     const status_1 = (
         <div className="us_container">
-            <h1 className="us_title">프린터에 전송할 파일을 선택하세요</h1>
+            <h1 className="us_title">프린터로 전송할 파일을 선택하세요</h1>
             { warning ? <div className="us_warning">{warning}</div> : null }
+            { success ? <div className="us_success">{success}</div> : null }
             
             <form id="nothingtodoform">
-                <button className='us_submit'>
-                    <label htmlFor="printerFileInput">
+                <label htmlFor="printerFileInput">
+                    <div className='us_submit us_file_input'>
                         파일 선택하기
-                    </label>
-                </button>
+                    </div>
+                </label>
 
                 <input type="file" className="us_file_input" hidden id="printerFileInput" />
 
@@ -163,7 +170,7 @@ export default function User() {
                             if (selectedFile != null) {
                                 return (<>
                                     <div className="us_curr_token_div">선택된 파일: {selectedFile.name}</div>
-                                    <button className="us_submit" id="verify_payment" onClick={() => sign_transaction(myHash, selectedFile, code)}>승인</button>
+                                    <button className="us_submit" id="verify_payment" onClick={() => sign_transaction(setSuccess, myHash, selectedFile, code)}>승인</button>
                                 </>)
                             }
 

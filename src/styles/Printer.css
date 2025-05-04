@@ -8,21 +8,23 @@
     margin: 70px;
 }
 
-.pt_qr {
-    background-color: black;
-    color: white;
-    padding: 20px;
-    /* bottom: 50px; */
-    /* position: absolute; */
-    border: none;
-    border-radius: 10px;
-    margin: 40px 0 40px 0;
-    width: 300px;
+.pt_download_links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.pt_qr:hover {
-    cursor: pointer;
-    transform: scale(1.1);
+.pt_gray {
+    color: rgb(73, 73, 73);
+}
+
+.pt_empty_links {
+    margin: 40px;
+}
+
+.pt_download_links > a {
+    margin: 10px;
 }
 
 .pt_success {
@@ -45,15 +47,6 @@
     width: 400px;
 }
 
-.pt_video {
-    position: relative;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: 60vw;
-}
-
 .pt_new_input {
     border-radius: 10px;
     padding: 15px 20px;
@@ -63,7 +56,6 @@
     margin: 10px;
     max-width: 400px;
     width: 80vw;
-
 }
 
 .pt_submit {

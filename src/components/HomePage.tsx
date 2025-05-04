@@ -13,21 +13,6 @@ function logout() {
     window.location.href = "/"
 }
 
-function getCompliments(setCompliments: (compliments: Compliment[]) => void, hash: string) {
-    axios.post("https://api.sujebi.tech:8443/getCompliments", JSON.stringify({ hash }), {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(res => {
-        setCompliments(((res.data as APIResponse).payload.msg.compliments as Compliment[]).map(c => {
-            const myDate = new Date(parseInt(c.timestamp))
-            const date = myDate.getFullYear() + "/" + (myDate.getMonth() + 1) + "/" + myDate.getDate() + " " + myDate.getHours() + "시 " + myDate.getMinutes() + "분";
-            
-            return { from: c.from.slice(0, 8), message: c.message, timestamp: date }
-        }).reverse())
-    })
-}
-
 export default function HomePage() {
     const [compliments, setCompliments] = useState<Compliment[]>([])
 
@@ -39,8 +24,6 @@ export default function HomePage() {
             window.location.href = "/"
             return
         }
-
-        getCompliments(setCompliments, hash)
     }, [])
     
     return (

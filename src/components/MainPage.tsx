@@ -2,11 +2,12 @@ import React from "react"
 import "../styles/MainPage.css"
 
 export default function MainPage() {
-    let whereToGo = "/register"
+    let printer = "/printer"
+    let user = "/register"
 
     const hash = localStorage.getItem("studentHash")
     if (hash) {
-        whereToGo = "/mypage"
+        user = "/user"
     }
 
     return (
@@ -14,13 +15,14 @@ export default function MainPage() {
             <div className="mp_start_page_wrapper">
                 <div className="mp_title_card">
                     <h1>
-                        SeJong Blockchain Identification
+                        <span className="sdownfont">와파트</span>: Wireless File Transfer
                     </h1>
-                    <div className="sdownfont">세종과학고등학교 재학생 인증 서비스</div>
+                    <div className="sdownfont">프린터를 위한 USB 없는 파일 전송 서비스</div>
                 </div>
                 <div className="mp_button_group">
-                    <button className="mp_get_help_btn" onClick={() => window.location.href = "/usage"}>수제비 사용법 익히기</button>
-                    <button className="mp_get_started_btn" onClick={() => window.location.href = whereToGo}>블록체인 인증 시작하기</button>
+                    <button className="mp_get_help_btn" onClick={() => window.location.href = "/usage"}>WFT 사용법 익히기</button>
+                    <button className="mp_get_started_btn" onClick={() => window.location.href = printer}>프린터에서 다운받기</button>
+                    <button className="mp_get_started_btn" onClick={() => window.location.href = user}>파일 업로드하기</button>
                 </div>
             </div>
         </div>

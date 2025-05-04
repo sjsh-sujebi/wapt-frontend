@@ -1,14 +1,14 @@
-.vf_container {
+.pt_container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.vf_container > h1 {
+.pt_container > h1 {
     margin: 70px;
 }
 
-.vf_qr {
+.pt_qr {
     background-color: black;
     color: white;
     padding: 20px;
@@ -20,12 +20,12 @@
     width: 300px;
 }
 
-.vf_qr:hover {
+.pt_qr:hover {
     cursor: pointer;
     transform: scale(1.1);
 }
 
-.vf_success {
+.pt_success {
     background-color: rgb(134, 194, 134);
     border-radius: 10px;
     height: 35px;
@@ -36,7 +36,7 @@
     max-width: 380px;
 }
 
-.vf_new_input_card {
+.pt_new_input_card {
     margin: 30px;
     display: flex;
     flex-direction: column;
@@ -45,7 +45,7 @@
     width: 400px;
 }
 
-.vf_video {
+.pt_video {
     position: relative;
     top: 0;
     left: 0;
@@ -54,7 +54,7 @@
     width: 60vw;
 }
 
-.vf_new_input {
+.pt_new_input {
     border-radius: 10px;
     padding: 15px 20px;
     border: 1px solid rgba(0,0,0,0.4);
@@ -66,7 +66,7 @@
 
 }
 
-.vf_submit {
+.pt_submit {
     background-color: black;
     color: white;
     padding: 10px;
@@ -76,13 +76,13 @@
     margin: 10px;
 }
 
-.vf_submit:hover {
+.pt_submit:hover {
     transform: scale(1.1);
     cursor: pointer;
 }
 
 @media screen and (max-width: 500px) {
-    .vf_title {
+    .pt_title {
         font-size: 1.5rem;
         margin: 50px 0px !important;
     }

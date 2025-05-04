@@ -2,7 +2,7 @@ const { getStore } = require('@netlify/blobs')
 const { v4: uuidv4 } = require('uuid')
 
 exports.handler = async (event) => {
-    const store = getStore("uploads", { siteID: "", token: "" })
+    const store = getStore("uploads", { siteID: process.env.siteID, token: process.env.TOKEN })
     if (event.httpMethod !== 'POST') {
         return { statusCode: 405, body: 'Method Not Allowed' };
     }

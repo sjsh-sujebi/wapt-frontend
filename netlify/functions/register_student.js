@@ -5,7 +5,7 @@ const { Web3 } = require('web3')
 exports.handler = async (event) => {
     const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS
     const contractOwnerKey = process.env.CONTRACT_OWNER_ACCOUNT
-    const web3 = new Web3("http://127.0.0.1:8545")
+    const web3 = new Web3("https://1rpc.io/holesky")
 
     const wallet = await web3.eth.accounts.decrypt(contractOwnerKey, "gom123#")
     const contract = new web3.eth.Contract(ABI, CONTRACT_ADDRESS);

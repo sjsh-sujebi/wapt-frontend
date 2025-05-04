@@ -29,7 +29,8 @@ export default function TopNav({hash, toggleHome, toggleMenu, toggleLogin, toggl
             <h1 className="navbar-title" onClick={() => burgerDefault(toggleHome)}><span className="sdownfont">WFT</span></h1>
             <div className="navbar-menu">
                 <span className="navbar-menu-help sdownfont" onClick={() => window.location.href = "/usage"}>사용법</span>
-                <span className="navbar-menu-help sdownfont" onClick={() => window.location.href = "/printer"}>전송받기</span>
+                <span className="navbar-menu-help sdownfont" onClick={() => window.location.href = "/user"}>내 컴퓨터용</span>
+                <span className="navbar-menu-help sdownfont" onClick={() => window.location.href = "/printer"}>프린터용</span>
                 { hash ? <span className="navbar-menu-login sdownfont" onClick={() => burgerDefault(toggleMyPage)}>마이 페이지</span> : <span className="navbar-menu-login" onClick={() => burgerDefault(toggleLogin)}>로그인</span> }
                 
             </div>

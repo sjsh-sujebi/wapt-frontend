@@ -2,6 +2,7 @@ import React, { ReactElement, useEffect, useState } from "react"
 import "../styles/Printer.css"
 import axios from "axios";
 import { createRandomCode, openChannel } from "../utils/firebase";
+import { Buffer } from 'buffer'
 
 export default function HomePage() {
     const [code, setCode] = useState(createRandomCode().toString())
@@ -16,18 +17,13 @@ export default function HomePage() {
                     "Content-Type": "application/json"
                 },
             }).then((data) => {
-                const parsedData = JSON.parse(data.data.toString())
+                const response = data.data as APIResponse
                 
-                const byteCharacters = atob(parsedData.base64Data)
-                const byteNumbers = new Array(byteCharacters.length);
-                for (let i = 0; i < byteCharacters.length; i++) {
-                    byteNumbers[i] = byteCharacters.charCodeAt(i);
-                }
-
-                const blob = new Blob([new Uint8Array(byteNumbers)], { type : data.headers["Content-Type"]?.toString() ?? "application/octet-stream" })
+                const buffer = Buffer.from(response.payload.base64Data.split(`${response.payload.contentType}base64`)[1], 'base64')
+                const blob = new Blob([buffer], { type : response.payload.contentType })
 
                 const url = window.URL.createObjectURL(blob)
-                const a = React.createElement('a', { href: url, download: parsedData.fileName }, parsedData.fileName) as ReactElement
+                const a = React.createElement('a', { href: url, download: response.payload.fileName, className: 'pt_download_link' }, response.payload.fileName) as ReactElement
                 // a.href = url
                 // a.download = parsedData.fileName
                 // a.click()
@@ -41,11 +37,19 @@ export default function HomePage() {
     
     const default_return = (
         <div className="pt_container">
-            <h1 className="pt_title"><span className="upfont">{code}</span>에 연결하기</h1>
+            <h1 className="pt_title">프린터 번호 : <span className="upfont pt_gray">{code}</span>에 연결하기</h1>
 
-            <div className="pt_download_links">
-                {downloadLinks}
-            </div>
+            {
+                (() => {
+                    if (downloadLinks.length == 0) {
+                        return <div className="pt_empty_links">파일을 받을 준비가 되었습니다!</div>
+                    } else {
+                        return (<div className="pt_download_links">
+                            {downloadLinks}
+                        </div>)
+                    }
+                })()
+            }
         </div>
     )
 

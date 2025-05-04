@@ -9,8 +9,9 @@ import Processing from "./components/Processing";
 import HomePage from "./components/HomePage";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import StudentLogin from './components/StudentLogin';
-import Verify from './components/Verify';
 import HowToUse from './components/HowToUse';
+import Printer from './components/Printer';
+import User from './components/User';
 
 const router = createBrowserRouter([
   {
@@ -44,9 +45,15 @@ const router = createBrowserRouter([
     )
   },
   {
-    path: '/verify',
+    path: '/printer',
     element: (
-      <App child={<Verify />} />
+      <App child={<Printer />} />
+    )
+  },
+  {
+    path: '/user',
+    element: (
+      <App child={<User />} />
     )
   },
   {

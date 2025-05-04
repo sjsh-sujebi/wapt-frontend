@@ -66,6 +66,7 @@
 }
 
 .mp_get_started_btn {
+    margin-top: 20px;
     padding: 10px;
     border: none;
     background-color: black;
@@ -75,7 +76,7 @@
 }
 
 .mp_get_help_btn {
-    margin-bottom: 20px;
+    margin-top: 20px;
     padding: 10px;
     border: none;
     background-color: white;

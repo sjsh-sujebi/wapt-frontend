@@ -1,0 +1,122 @@
+.us_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.us_even_container {
+    justify-content: space-around;
+    height: 60%;
+}
+
+.us_submit_deactivated:hover {
+    cursor: not-allowed !important;
+}
+
+.us_submit_deactivated {
+    background-color: rgb(131, 131, 131) !important;
+    transform: none !important;
+}
+
+.us_container > h1 {
+    margin: 70px;
+}
+
+.us_no_display {
+    display: none;
+}
+
+.us_weak_h1 {
+    margin: 40px !important;
+}
+
+.us_warning {
+    background-color: rgb(255, 72, 72);
+    border-radius: 10px;
+    height: 50px;
+    display: flex;
+    padding: 0px 30px;
+    align-items: center;
+    width: 500px;
+}
+
+.us_file_send_popup_background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.5;
+}
+
+.us_success {
+    background-color: rgb(134, 194, 134);
+    border-radius: 10px;
+    height: 35px;
+    display: flex;
+    padding: 10px 30px;
+    align-items: center;
+    width: calc(80vw - 20px);
+    max-width: 380px;
+}
+
+.us_new_input_card {
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+}
+
+.us_new_input {
+    border-radius: 10px;
+    padding: 15px 20px;
+    border: 1px solid rgba(0,0,0,0.4);
+    outline: 0;
+    box-shadow: 0 3px 3px rgba(0,0,0,0.3);
+    margin: 10px;
+    max-width: 400px;
+    width: 80vw;
+}
+
+.us_submit {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    width: 150px;
+    border: none;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.us_submit:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+    .us_title {
+        font-size: 1.5rem;
+        margin: 50px 0px !important;
+    }
+}
+
+.us_file_send_popup {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    margin-top: 50vh;
+    margin-left: 50vw;
+    transform: translateY(-50%) translateX(-50%);
+    width: 800px;
+    height: 300px;
+    border: 1px solid rgba(0,0,0,0.4);
+    outline: 0;
+    box-shadow: 0 3px 3px rgba(0,0,0,0.3);
+    background-color: white;
+    border-radius: 10px;
+    padding: 50px;
+}
+
+.us_curr_token_div {
+    margin-bottom: 20px;
+}

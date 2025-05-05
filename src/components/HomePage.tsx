@@ -13,8 +13,28 @@ function logout() {
     window.location.href = "/"
 }
 
+function approveStudent(adminHash: string, studentData: any) {
+    axios.post("/.netlify/functions/register_admin", JSON.stringify({
+        adminHash,
+        studentData
+    }), {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(data => {
+        const response = data.data as APIResponse
+
+        if (response.is_success) {
+            alert("success!")
+        } else {
+            alert("failed!")
+        }
+    })
+}
+
 export default function HomePage() {
-    const [compliments, setCompliments] = useState<Compliment[]>([])
+    const [isAdmin, setIsAdmin] = useState(false)
+    const [candidates, setCandidates] = useState<any[]>([])
 
     const hash = localStorage.getItem("studentHash")
 
@@ -25,6 +45,38 @@ export default function HomePage() {
             return
         }
     }, [])
+
+    useEffect(() => {
+        axios.post('/.netlify/functions/is_admin', JSON.stringify({ adminHash: hash }), {
+            headers: {
+                "Content-Type": 'application/json'
+            }
+        }).then(ia_data => {
+            const ia_response = ia_data.data as APIResponse
+
+            if (ia_response.is_success) {
+                setIsAdmin(true)
+
+                axios.post("/.netlify/functions/register_candidates", JSON.stringify({ adminHash: hash }), {
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }).then(rc_data => {
+                    const rc_response = rc_data.data as APIResponse
+
+                    if (rc_response.is_success) {
+                        let candidates_obj = []
+                        for (let e of Object.values(rc_response.payload.candidates)) {
+                            candidates_obj.push(e)
+                        }
+                        setCandidates(candidates_obj)
+                    } else {
+                        alert("Something went wrong")
+                    }
+                })
+            }
+        })
+    }, [])
     
     return (
         <div className="hp_container">
@@ -32,14 +84,19 @@ export default function HomePage() {
             <img width={200} height={200} src={`https://api.qrserver.com/v1/create-qr-code/?size=300X300&data=${encodeURIComponent(hash!!)}`} alt="" />
             <button className="hp_logout" onClick={logout}>로그아웃</button>
 
-            <h1 className="mdownfont">나의 칭찬 리스트</h1>
-            { compliments.map(c => 
-                <div className="hp_compliment_card">
-                    <p className="hp_compliment_title">발행자: <span className="mdownfont">{c.from}</span></p>
-                    <p className="hp_compliment_timestamp">발행 시각: <span className="sdownfont">{c.timestamp}</span></p>
-                    <p className="hp_compliment_msg">칭찬 내용: <span className="sdownfont">{c.message}</span></p>
-                </div>)
-            }
+            <h1 className="mdownfont">남은 토큰</h1>
+
+            {(() => {
+                if (isAdmin) {
+                    return candidates.map(e => (
+                        <div>
+                            <img src={e.base64Image} />
+                            <div>{e.gradeNumber}학년 {e.classNumber}반 {e.studentNumber}번</div>
+                            <button onClick={() => { approveStudent(hash!!, e) }}>승인</button>
+                        </div>
+                    ))
+                }
+            })()}
         </div>
     )
 }

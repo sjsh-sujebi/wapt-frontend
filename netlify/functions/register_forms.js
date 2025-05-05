@@ -1,0 +1,56 @@
+const { db } = require("../../globals.js")
+const { ref, onValue, set } = require("firebase/database")
+const { v4: uuidv4 } = require("uuid")
+
+exports.handler = async (event) => {
+    const jsonBody = JSON.parse(event.body)
+
+    const studentData = jsonBody
+
+    const userAlreadyExists = await new Promise((resolve, reject) => {
+        const searchRef = ref(db, `/registered_users/${studentData.gradeNumber}/${studentData.classNumber}/${studentData.studentNumber}`)
+        onValue(searchRef, snapshot => {
+            if (snapshot.val() != null) {
+                resolve(true)
+            } else {
+                resolve(false)
+            }
+        })
+    })
+
+    if (userAlreadyExists) {
+        return {
+            statusCode: 500,
+            body: JSON.stringify({
+                is_success: false,
+                payload: "User Already Exists"
+            })
+        }
+    }
+
+    await new Promise((resolve, reject) => {
+        const uuid = uuidv4()
+        const messageRef = ref(db, `/register_candidates/${uuid}`)
+
+        set(messageRef, studentData).then(() => {    
+            resolve(studentData)
+        })
+    })
+
+    await new Promise((resolve, reject) => {
+        const searchRef = ref(db, `/registered_users/${studentData.gradeNumber}/${studentData.classNumber}/${studentData.studentNumber}`)
+        set(searchRef, "will_be_user").then(() => {
+            resolve()
+        })
+    })
+
+    return {
+        statusCode: 200,
+        body: JSON.stringify({
+            is_success: true,
+            payload: {
+                studentData
+            }
+        })
+    }
+}

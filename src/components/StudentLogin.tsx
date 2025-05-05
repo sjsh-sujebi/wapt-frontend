@@ -22,7 +22,7 @@ function clickListener(setWarning: (msg: string) => void) {
         return
     }
 
-    axios.post("https://trusted-fern-quince.glitch.me/login", JSON.stringify(data), {
+    axios.post("/.netlify/functions/login", JSON.stringify(data), {
         headers: {
             'Content-Type': 'application/json'
         }

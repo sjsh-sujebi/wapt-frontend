@@ -23,7 +23,8 @@ function approveStudent(adminHash: string, studentData: any) {
     }), {
         headers: {
             "Content-Type": "application/json"
-        }
+        },
+        timeout: 10000000000
     }).then(data => {
         const response = data.data as APIResponse
 

@@ -21,14 +21,8 @@ exports.handler = async (event) => {
     const candidates = await new Promise((resolve, reject) => {
         onValue(messageRef, snapshot => {
             const candidates = snapshot.val()
-            
-            if (candidates == null) {
-                set(messageRef, {}).then(() => {
-                    resolve({})
-                })
-            }
 
-            resolve(candidates)
+            resolve(candidates ?? {})
         })
     })
 

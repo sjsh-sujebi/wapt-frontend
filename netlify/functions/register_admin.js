@@ -42,7 +42,10 @@ exports.handler = async (event) => {
 
     delete studentData["base64Image"]
 
-    const userHash = web3.utils.sha3(JSON.stringify(studentData));
+    const { keyword1, keyword2, keyword3, gradeNumber, classNumber, studentNumber } = studentData
+    const data = { keyword1, keyword2, keyword3, gradeNumber, classNumber, studentNumber }
+
+    const userHash = web3.utils.sha3(JSON.stringify(data));
     const signature = await web3.eth.accounts.sign(userHash, wallet.privateKey)
 
     if (await contract.methods.verifyStudent(userHash).call({ from : wallet.address})) {

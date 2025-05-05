@@ -13,9 +13,12 @@ exports.handler = async (event) => {
     const jsonBody = JSON.parse(event.body)
     const studentData = jsonBody
 
-    console.log(JSON.stringify(studentData))
+    const { keyword1, keyword2, keyword3, gradeNumber, classNumber, studentNumber } = studentData
+    const data = { keyword1, keyword2, keyword3, gradeNumber, classNumber, studentNumber }
 
-    const userHash = web3.utils.sha3(JSON.stringify(studentData));
+    console.log(JSON.stringify(data))
+
+    const userHash = web3.utils.sha3(JSON.stringify(data));
 
     if (await contract.methods.verifyStudent(userHash).call({ from : wallet.address })) {
         return {

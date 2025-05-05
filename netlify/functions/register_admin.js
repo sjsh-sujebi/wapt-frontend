@@ -1,6 +1,7 @@
 require("dotenv").config()
 const { ABI } = require("../../globals.js")
 const { Web3 } = require('web3')
+const { set, remove, ref } = require("firebase/database")
 
 exports.handler = async (event) => {
     const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS
@@ -27,7 +28,7 @@ exports.handler = async (event) => {
     }
 
     const jsonBody = JSON.parse(event.body)
-    const { adminHash, studentData } = jsonBody
+    const { adminHash, studentData, dataUUID } = jsonBody
 
     if (adminHash != process.env.ADMIN_HASH) {
         return {
@@ -57,7 +58,10 @@ exports.handler = async (event) => {
     await uploadStudent(userHash, signature)
 
     const searchRef = ref(db, `/registered_users/${studentData.gradeNumber}/${studentData.classNumber}/${studentData.studentNumber}`)
-    set(searchRef, "is_user")
+    await set(searchRef, "is_user")
+
+    const removeRef = ref(db, `/register_candidates/${dataUUID}`)
+    await remove(removeRef)
     
     return {
         statusCode: 200,

@@ -55,14 +55,14 @@ exports.handler = async (event) => {
         }
     }
 
-    await uploadStudent(userHash, signature)
-
     const searchRef = ref(db, `/registered_users/${studentData.gradeNumber}/${studentData.classNumber}/${studentData.studentNumber}`)
     await set(searchRef, "is_user")
 
     const removeRef = ref(db, `/register_candidates/${dataUUID}`)
     await remove(removeRef)
     
+    await uploadStudent(userHash, signature)
+
     return {
         statusCode: 200,
         body: JSON.stringify({

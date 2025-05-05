@@ -94,7 +94,7 @@ export default function HomePage() {
                 if (isAdmin) {
                     return candidates.map(e => (
                         <div>
-                            <img src={e.base64Image} width="400" />
+                            <img src={e.base64Image} width="100" />
                             <div>{e.gradeNumber}학년 {e.classNumber}반 {e.studentNumber}번</div>
                             <button onClick={() => { approveStudent(hash!!, e) }}>승인</button>
                         </div>

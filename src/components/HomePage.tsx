@@ -14,9 +14,12 @@ function logout() {
 }
 
 function approveStudent(adminHash: string, studentData: any) {
+    const dataUUID = studentData["uuid"]
+    delete studentData["uuid"]
     axios.post("/.netlify/functions/register_admin", JSON.stringify({
         adminHash,
-        studentData
+        studentData,
+        dataUUID
     }), {
         headers: {
             "Content-Type": "application/json"
@@ -66,7 +69,8 @@ export default function HomePage() {
 
                     if (rc_response.is_success) {
                         let candidates_obj = []
-                        for (let e of Object.values(rc_response.payload.candidates)) {
+                        for (let [key, e] of Object.entries(rc_response.payload.candidates)) {
+                            (e as any)["uuid"] = key
                             candidates_obj.push(e)
                         }
                         setCandidates(candidates_obj)

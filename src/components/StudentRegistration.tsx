@@ -29,7 +29,7 @@ function clickListener(setWarning: (msg: string) => void) {
 
         const data = { keyword1, keyword2, keyword3, gradeNumber, classNumber, studentNumber, base64Image }
 
-        axios.post("https://trusted-fern-quince.glitch.me/register", JSON.stringify(data), {
+        axios.post("/.netlify/functions/register_forms", JSON.stringify(data), {
             headers: {
                 'Content-Type': 'application/json'
             }

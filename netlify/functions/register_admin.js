@@ -40,6 +40,8 @@ exports.handler = async (event) => {
         }
     }
 
+    delete studentData["base64Image"]
+
     const userHash = web3.utils.sha3(studentData);
     const signature = await web3.eth.accounts.sign(userHash, wallet.privateKey)
 

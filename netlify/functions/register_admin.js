@@ -1,5 +1,5 @@
 require("dotenv").config()
-const { ABI } = require("../../globals.js")
+const { ABI, db } = require("../../globals.js")
 const { Web3 } = require('web3')
 const { set, remove, ref } = require("firebase/database")
 

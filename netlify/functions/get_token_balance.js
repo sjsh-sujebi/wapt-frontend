@@ -6,10 +6,6 @@ const isBytes32 = (str) => {
     return /^0x[a-fA-F0-9]{64}$/.test(str);
 };
 
-const getTokenBalance = async () => {
-    return await contract.methods.getTokenBalance(userHash).call({ from : wallet.address})
-}
-
 exports.handler = async (event) => {
     const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS
     const contractOwnerKey = process.env.CONTRACT_OWNER_ACCOUNT
@@ -20,6 +16,10 @@ exports.handler = async (event) => {
 
     const jsonBody = JSON.parse(event.body)
     const { userHash } = jsonBody
+
+    const getTokenBalance = async () => {
+        return await contract.methods.getTokenBalance(userHash).call({ from : wallet.address })
+    }
 
     if (!isBytes32(userHash)) {
         console.log("ea")

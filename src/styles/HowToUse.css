@@ -46,5 +46,6 @@ a {
 
 .htu_container > img {
     border: 1px solid black;
-    height: 60vh;
+    height: 60vh auto;
+    max-width: 60vw;
 }

@@ -8,7 +8,7 @@ function clip(tag: string) {
 export default function HowToUse() {
     return (
         <div className="htu_container">
-            <h1><span className="upfont">WFT</span> <span className="mdownfont">사용 매뉴얼</span> 😎</h1>
+            <h1><span className="upfont">WFT</span> <span className="mdownfont">사용 매뉴얼</span></h1>
 
             <h2 id="register" onClick={() => clip("register")}># 회원가입</h2>
             <img src="/0.png" alt="" />

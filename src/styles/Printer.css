@@ -17,6 +17,10 @@
     margin-bottom: 30px;
 }
 
+.pt_download_links > .pt_link_wrapper:not(:first) {
+    margin-top: 30px;
+}
+
 .pt_download_links {
     display: flex;
     flex-direction: column;

@@ -25,19 +25,24 @@ const connectToPrinter = (setCode: (code: number) => void, setWarning: (warning:
 }
 
 function transaction(userHash: string, callback: () => void) {
-    axios.post("/.netlify/functions/use_token", JSON.stringify({ userHash }), {
-        headers: {
-            "Content-Type": "application/json"
-        }
-    }).then(data => {
-        const response = data.data as APIResponse
+    // TODO: Free version only
+    callback()
+
+
+    // TODO: uncomment below for non-free version
+    // axios.post("/.netlify/functions/use_token", JSON.stringify({ userHash }), {
+    //     headers: {
+    //         "Content-Type": "application/json"
+    //     }
+    // }).then(data => {
+    //     const response = data.data as APIResponse
     
-        if (!response.is_success) {
-            alert("PaymentError: 개발자에게 문의해 주세요")
-        } else {
-            callback()
-        }
-    })
+    //     if (!response.is_success) {
+    //         alert("PaymentError: 개발자에게 문의해 주세요")
+    //     } else {
+    //         callback()
+    //     }
+    // })
 }
 
 function sign_transaction(set_success: (msg: string) => void, myHash: string, selectedFile: File, code: number) {
@@ -59,6 +64,7 @@ function sign_transaction(set_success: (msg: string) => void, myHash: string, se
                 if (response.is_success) {
                     uploadToChannel(code.toString(), response.payload.blobId, response.payload.fileName)
                     set_success(`성공적으로 파일을 전송하였습니다!`)
+                    document.querySelector("#file_selection_btn")?.classList.remove("us_submit_deactivated")
                     document.querySelector(".us_file_send_popup")?.classList.add("us_no_display")
                     document.querySelector(".us_file_send_popup_background")?.classList.add("us_no_display")
                 } else {
@@ -106,23 +112,30 @@ export default function User() {
         })
         
         document.querySelector('#printerFileInput')?.addEventListener('change', e => {
+            document.querySelector("#file_selection_btn")?.classList.add("us_submit_deactivated")
+            setSuccess("")
             const target: HTMLInputElement | null = e.target as HTMLInputElement
             if (target?.files && target?.files[0]) {
                 const selectedFile = target.files[0]
                 setSelectedFile(selectedFile)
+                
+                // TODO: Free version only
+                sign_transaction(setSuccess, myHash!!, selectedFile, code)
             } else {
                 return
             }
-            document.querySelector(".us_file_send_popup")?.classList.remove("us_no_display")
-            document.querySelector(".us_file_send_popup_background")?.classList.remove("us_no_display")
+            
+            // TODO: Uncomment below for non-free version
+            // document.querySelector(".us_file_send_popup")?.classList.remove("us_no_display")
+            // document.querySelector(".us_file_send_popup_background")?.classList.remove("us_no_display")
         });
 
         document.querySelector("#nothingtodoform")?.addEventListener("submit", e => e.preventDefault())
     }, [status])
 
     if (!myHash) {
-        alert("로그인이 필요한 서비스입니다")
-        window.location.href = "/"
+        alert("로그인이 필요한 서비스입니다!")
+        window.location.href = "/login"
         return
     }
     
@@ -143,7 +156,7 @@ export default function User() {
             
             <form id="nothingtodoform">
                 <label htmlFor="printerFileInput">
-                    <div className='us_submit us_file_input'>
+                    <div id="file_selection_btn" className='us_submit us_file_input'>
                         파일 선택하기
                     </div>
                 </label>

@@ -36,7 +36,23 @@
 }
 
 .sl_btn_footer {
-    margin: 60px;
+    margin: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sl_underline {
+    text-decoration: underline;
+    color: black;
+}
+
+.sl_rhint_l {
+    margin-right: 10px;
+}
+
+.sl_register_footer {
+    margin: 30px;
     display: flex;
     align-items: center;
     justify-content: center;

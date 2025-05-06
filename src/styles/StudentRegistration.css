@@ -36,7 +36,23 @@
 }
 
 .sr_btn_footer {
-    margin: 60px;
+    margin: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sr_underline {
+    text-decoration: underline;
+    color: black;
+}
+
+.sr_rhint_l {
+    margin-right: 10px;
+}
+
+.sr_login_footer {
+    margin: 30px;
     display: flex;
     align-items: center;
     justify-content: center;

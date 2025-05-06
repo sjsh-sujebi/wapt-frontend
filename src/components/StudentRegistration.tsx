@@ -58,12 +58,12 @@ export default function StudentRegistration() {
         <div className="sr_container">
             <div className="sr_start_page_wrapper">
                 <h1 className="sr_title">
-                    학생증 등록하기
+                    회원가입
                 </h1>
                 { warning ? <div className="sr_warning">{warning}</div> : null }
                 <div className="sr_input_hint">
                     <h2>로그인 키워드 설정하기</h2>
-                    <div>SuJeBI 로그인을 위한 비밀 키워드를 설정해주세요</div>
+                    <div><span className="upfont">SuJeBI</span> <span className="mdownfont">로그인을 위한 비밀 키워드를 설정해주세요</span></div>
                 </div>
                 <div className="sr_input_forms">
                     <label htmlFor="keyword1">키워드 1</label>
@@ -75,7 +75,7 @@ export default function StudentRegistration() {
                 </div>
                 <div className="sr_input_hint">
                     <h2>학생 정보 입력하기</h2>
-                    <div>본인의 학번, 이름을 기재하여 주세요</div>
+                    <div className="mdownfont">본인의 학번, 이름을 기재하여 주세요</div>
                 </div>
                 <div className="sr_input_forms">
                     <label htmlFor="grade">학년</label>
@@ -87,7 +87,7 @@ export default function StudentRegistration() {
                 </div>
                 <div className="sr_input_hint">
                     <h2>학생증 촬영하기</h2>
-                    <div>본인이 세종과학고 재학생임을 증명하기 위해 학생증 <b className="backside">뒷면</b>을 촬영하여 주세요</div>
+                    <div className="mdownfont">본인의 학생증 <b className="backside">뒷면</b>을 촬영하여 주세요</div>
                 </div>
                 <div className="sr_input_forms">
                     <input type="file" className="sr_input" id="cert_image" accept="image/png, image/gif, image/jpeg" />
@@ -95,6 +95,10 @@ export default function StudentRegistration() {
 
                 <div className="sr_btn_footer">
                     <button className="sr_submit_btn" onClick={e => clickListener(e.target as HTMLButtonElement, setWarning)}>제출</button>
+                </div>
+
+                <div className="sr_login_footer">
+                    <span className="mdownfont sr_rhint_l">이미 회원이신가요?</span><a className="sr_underline" href="/login">로그인</a>
                 </div>
             </div>
         </div>

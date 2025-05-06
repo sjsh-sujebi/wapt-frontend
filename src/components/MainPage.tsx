@@ -3,7 +3,7 @@ import "../styles/MainPage.css"
 
 export default function MainPage() {
     let printer = "/printer"
-    let user = "/register"
+    let user = "/login"
 
     const hash = localStorage.getItem("studentHash")
     if (hash) {
@@ -14,10 +14,10 @@ export default function MainPage() {
         <div className="mp_container">
             <div className="mp_start_page_wrapper">
                 <div className="mp_title_card">
-                    <h1>
-                        <span className="sdownfont">와파트</span>: Wireless File Transfer
+                    <h1 className="mp_title upfont">
+                        WFT
                     </h1>
-                    <div className="sdownfont">프린터를 위한 USB 없는 파일 전송 서비스</div>
+                    <div className="mdownfont mp_title_desc">프린터를 위한 <span className="upfont">USB</span> 없는 파일 전송 서비스</div>
                 </div>
                 <div className="mp_button_group">
                     <button className="mp_get_started_btn" onClick={() => window.location.href = printer}>프린터에서 다운받기</button>

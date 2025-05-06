@@ -13,6 +13,7 @@ import HowToUse from './components/HowToUse';
 import Printer from './components/Printer';
 import User from './components/User';
 import AddTokens from './components/AddTokens';
+import SuJeBi from './components/SuJeBi';
 
 const router = createBrowserRouter([
   {
@@ -67,6 +68,12 @@ const router = createBrowserRouter([
     path: '/charge',
     element: (
       <App child={<AddTokens />}/>
+    )
+  },
+  {
+    path: '/sujebi',
+    element: (
+      <App child={<SuJeBi />}/>
     )
   }
 ])

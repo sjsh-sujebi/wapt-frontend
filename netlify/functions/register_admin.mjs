@@ -1,9 +1,10 @@
 import "dotenv/config"
-import { ABI, db } from "../../globals.js"
+import { ABI, getDB } from "../../globals.js"
 import { Web3 } from 'web3'
 import { set, remove, ref } from "firebase/database"
 
 exports.handler = async (event) => {
+    const db = getDB()
     const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS
     const contractOwnerKey = process.env.CONTRACT_OWNER_ACCOUNT
     const web3 = new Web3(process.env.INFURA_RPC_URL)

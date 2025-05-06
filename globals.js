@@ -190,3 +190,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 
 export const db = getDatabase(app, 'https://wapt-14dde-default-rtdb.asia-southeast1.firebasedatabase.app');
+
+export const getDB = () => {
+	const app = initializeApp(firebaseConfig)
+	return getDatabase(app, 'https://wapt-14dde-default-rtdb.asia-southeast1.firebasedatabase.app')	
+}

@@ -9,7 +9,7 @@ function startQR(setStatus: (status: number) => void, setStudentHash: (studentHa
     const video = document.getElementById('video') as HTMLVideoElement
 
     const qrScanner = new QrScanner(video, (decodedText) => {
-        axios.post("https://api.sujebi.tech:8443/verify", JSON.stringify({ hash: decodedText }), {
+        axios.post("/.netlify/functions/verify_student", JSON.stringify({ userHash: decodedText }), {
             headers: {
                 "Content-Type": "application/json"
             }
@@ -77,14 +77,14 @@ export default function AddTokens() {
                 alert("관리자만 이 함수를 실행할 수 있습니다!")
                 return
             }
-            
+
             const value = parseInt((document.querySelector('.at_new_input') as HTMLInputElement).value)
             if (isNaN(value)) {
                 setStatus(2)
             }
 
             axios.post("/.netlify/functions/charge_token", JSON.stringify({
-                userHash: myHash,
+                userHash: studentHash,
                 tokenCount: value
             }), {
                 headers: {

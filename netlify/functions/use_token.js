@@ -35,7 +35,7 @@ exports.handler = async (event) => {
 
     if (!isBytes32(userHash)) {
         return {
-            statusCode: 500,
+            statusCode: 200,
             body: JSON.stringify({
                 is_success: false,
                 payload: "Invalid Hash Format"
@@ -46,7 +46,7 @@ exports.handler = async (event) => {
             const tokenCount = await contract.methods.getTokenBalance(userHash).call({ from : wallet.address})
             if (tokenCount == 0) {
                 return {
-                    statusCode: 500,
+                    statusCode: 200,
                     body: JSON.stringify({
                         is_success: false,
                         payload: "Insufficient Token Balance"
@@ -67,7 +67,7 @@ exports.handler = async (event) => {
             }
         } else {
             return {
-                statusCode: 500,
+                statusCode: 200,
                 body: JSON.stringify({
                     is_success: false,
                     payload: "No Such User"

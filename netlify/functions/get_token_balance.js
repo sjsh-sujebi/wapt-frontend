@@ -24,7 +24,7 @@ exports.handler = async (event) => {
     if (!isBytes32(userHash)) {
         console.log("ea")
         return {
-            statusCode: 500,
+            statusCode: 200,
             body: JSON.stringify({
                 is_success: false,
                 payload: "Invalid Hash Format"
@@ -44,7 +44,7 @@ exports.handler = async (event) => {
             }
         } else {
             return {
-                statusCode: 500,
+                statusCode: 200,
                 body: JSON.stringify({
                     is_success: false,
                     payload: "No Such User"

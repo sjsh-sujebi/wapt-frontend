@@ -9,7 +9,7 @@ exports.handler = async (event) => {
     const studentData = jsonBody
 
     const userAlreadyExists = await new Promise((resolve, reject) => {
-        const searchRef = ref(db, `/registered_users/${studentData.gradeNumber}/${studentData.classNumber}/${studentData.studentNumber}`)
+        const searchRef = ref(db, `${process.env.SECRET_FIREBASE_KEY}/registered_users/${studentData.gradeNumber}/${studentData.classNumber}/${studentData.studentNumber}`)
         onValue(searchRef, snapshot => {
             if (snapshot.val() != null) {
                 resolve(true)
@@ -31,7 +31,7 @@ exports.handler = async (event) => {
 
     await new Promise((resolve, reject) => {
         const uuid = uuidv4()
-        const messageRef = ref(db, `/register_candidates/${uuid}`)
+        const messageRef = ref(db, `${process.env.SECRET_FIREBASE_KEY}/register_candidates/${uuid}`)
 
         set(messageRef, studentData).then(() => {    
             resolve(studentData)
@@ -39,7 +39,7 @@ exports.handler = async (event) => {
     })
 
     await new Promise((resolve, reject) => {
-        const searchRef = ref(db, `/registered_users/${studentData.gradeNumber}/${studentData.classNumber}/${studentData.studentNumber}`)
+        const searchRef = ref(db, `${process.env.SECRET_FIREBASE_KEY}/registered_users/${studentData.gradeNumber}/${studentData.classNumber}/${studentData.studentNumber}`)
         set(searchRef, "will_be_user").then(() => {
             resolve()
         })

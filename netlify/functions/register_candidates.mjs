@@ -3,7 +3,7 @@ import { ref, onValue, set } from "firebase/database"
 
 exports.handler = async (event) => {
     const db = getDB()
-    const messageRef = ref(db, "/register_candidates")
+    const messageRef = ref(db, `${process.env.SECRET_FIREBASE_KEY}/register_candidates`)
 
     const jsonBody = JSON.parse(event.body)
 

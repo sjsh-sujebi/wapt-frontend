@@ -6,6 +6,10 @@
     justify-content: center;
 }
 
+.mp_title {
+    margin: 20px;
+}
+
 .mp_title_card {
     animation: godown 2s;
     max-width: 850px;
@@ -69,10 +73,19 @@
     margin-top: 20px;
     padding: 10px;
     border: none;
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
     border-radius: 10px;
     width: 250px;
+}
+
+.mp_title:hover {
+    cursor: pointer
+}
+
+.mp_title_desc:hover {
+    cursor: pointer
 }
 
 .mp_get_help_btn {

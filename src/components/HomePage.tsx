@@ -2,12 +2,6 @@ import React, { useEffect, useState } from "react"
 import "../styles/HomePage.css"
 import axios from "axios"
 
-type Compliment = {
-    from: string,
-    message: string,
-    timestamp: string
-}
-
 function logout() {
     localStorage.removeItem("studentHash")
     window.location.href = "/"
@@ -39,6 +33,7 @@ function approveStudent(adminHash: string, studentData: any) {
 export default function HomePage() {
     const [isAdmin, setIsAdmin] = useState(false)
     const [candidates, setCandidates] = useState<any[]>([])
+    const [tokens, setTokens] = useState(-1)
 
     const hash = localStorage.getItem("studentHash")
 
@@ -49,6 +44,17 @@ export default function HomePage() {
             return
         }
     }, [])
+
+    useEffect(() => {
+        axios.post("/.netlify/functions/get_token_balance", JSON.stringify({ userHash: hash }), {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(data => {
+            const response = data.data as APIResponse
+            setTokens(parseInt(response.payload.numTokens))
+        })
+    }, []);
 
     useEffect(() => {
         axios.post('/.netlify/functions/is_admin', JSON.stringify({ adminHash: hash }), {
@@ -85,11 +91,15 @@ export default function HomePage() {
     
     return (
         <div className="hp_container">
-            <h1><span className="mdownfont">나의</span> <span className="upfont">SuJeBI QR Code</span></h1>
+            <h1 className="hp_qr_title"><span className="mdownfont">나의</span> <span className="upfont">SuJeBI QR Code</span></h1>
             <img width={200} height={200} src={`https://api.qrserver.com/v1/create-qr-code/?size=300X300&data=${encodeURIComponent(hash!!)}`} alt="" />
             <button className="hp_logout" onClick={logout}>로그아웃</button>
 
-            <h1 className="mdownfont">남은 토큰</h1>
+            <h1 className="mdownfont acc_info_title">계정 정보</h1>
+            <div className="hp_acc_info_card">
+                    <span className="hp_acc_info_element">토큰: <span><span className="upfont">{tokens == -1 ? <>&lt;<span className="mdownfont">불러오는 중</span>&gt;</> : tokens}</span>개</span></span>
+                    <button onClick={() => alert("토큰 없이도 서비스 사용이 가능합니다!")}>충전하기</button>
+            </div>
 
             {(() => {
                 if (isAdmin) {

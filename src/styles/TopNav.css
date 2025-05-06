@@ -84,6 +84,15 @@
     background-color: rgb(234, 234, 234);
 }
 
+.navbar-menu-register {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+}
+
+.navbar-menu-register:hover {
+    background-color: rgb(234, 234, 234);
+}
+
 .navbar-menu-login {
     background-color: black;
     font-weight: 1000;

@@ -4,8 +4,40 @@
     align-items: center;
 }
 
-.hp_container > h1 {
+.hp_qr_title {
     margin: 70px;
+}
+
+.acc_info_title {
+    margin: 30px;
+}
+
+.hp_acc_info_card {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+}
+
+.hp_acc_info_card > button {
+    border: none;
+    background-color: black;
+    padding: 7px 14px;
+    border-radius: 10px;
+    color: white;
+}
+
+.hp_acc_info_card > button:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.hp_acc_info_element {
+    font-size: 1.3rem;
+    font-weight: 400 !important;
+}
+
+.hp_acc_info_element > span {
+    color: gray;
 }
 
 .hp_logout {
@@ -21,21 +53,4 @@
 .hp_logout:hover {
     cursor: pointer;
     transform: scale(1.1);
-}
-
-.hp_compliment_card {
-    padding: 40px;
-    border-radius: 10px;
-    margin-bottom: 40px;
-    width: calc(80vw - 80px);
-    font-size: 1.3rem;
-}
-
-.hp_compliment_card:hover {
-    background-color: aliceblue;
-    cursor: pointer;
-}
-
-@media screen and (max-width: 850px){ 
-
 }

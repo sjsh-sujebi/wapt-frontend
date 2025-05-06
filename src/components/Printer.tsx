@@ -3,6 +3,7 @@ import "../styles/Printer.css"
 import axios from "axios";
 import { createRandomCode, openChannel } from "../utils/firebase";
 import { Buffer } from 'buffer'
+import { v4 as uuidv4 } from 'uuid'
 
 export default function HomePage() {
     const [code, setCode] = useState(createRandomCode().toString())
@@ -23,30 +24,41 @@ export default function HomePage() {
                 const blob = new Blob([buffer], { type : response.payload.contentType })
 
                 const url = window.URL.createObjectURL(blob)
-                const a = React.createElement('a', { href: url, download: response.payload.fileName, className: 'pt_download_link' }, response.payload.fileName) as ReactElement
+                const uuid = uuidv4()
+                const a = React.createElement('a', { href: url, download: response.payload.fileName, className: 'pt_download_link', id: uuid, hidden: true }, response.payload.fileName)
+                const wrappedElement = <div className="pt_link_wrapper" onClick={() => document.getElementById(uuid)?.click()}>
+                    {a}{fileName}
+                </div>
                 // a.href = url
                 // a.download = parsedData.fileName
                 // a.click()
                 // a.remove()
                 // window.URL.revokeObjectURL(url);
 
-                setDownloadLinks((p) => [...p, a])
+                setDownloadLinks((p) => [...p, wrappedElement])
             })
         })
     }, [code])
     
     const default_return = (
         <div className="pt_container">
-            <h1 className="pt_title">프린터 번호 : <span className="upfont pt_gray">{code}</span>에 연결하기</h1>
+            <h1 className="pt_title">프린터 번호 : <span className="upfont pt_gray">{code}</span></h1>
 
             {
                 (() => {
                     if (downloadLinks.length == 0) {
                         return <div className="pt_empty_links">파일을 받을 준비가 되었습니다!</div>
                     } else {
-                        return (<div className="pt_download_links">
-                            {downloadLinks}
-                        </div>)
+                        (document.querySelector(".pt_title")!! as HTMLTitleElement).style.marginBottom = "30px";
+                        (document.querySelector(".pt_title")!! as HTMLTitleElement).style.marginTop = "70px"
+
+                        return (<>
+                            <h2 className="pt_file_list_title">파일 목록</h2>
+                            <div className="pt_download_hint mdownfont">(클릭해서 다운로드하세요)</div>
+                            <div className="pt_download_links">
+                                {downloadLinks}
+                            </div>
+                        </>)
                     }
                 })()
             }

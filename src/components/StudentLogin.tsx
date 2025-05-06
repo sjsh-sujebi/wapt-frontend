@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import "../styles/StudentLogin.css"
 import axios from "axios"
 
@@ -45,9 +45,21 @@ function clickListener(target: HTMLButtonElement, setWarning: (msg: string) => v
     })
 }
 
-export default function StudentRegistration() {
+export default function StudentLogin() {
     const [warning, setWarning] = useState("")
-    
+
+    if (window.location.hash == "#svcrq") {
+        window.location.hash = ""
+        setWarning("로그인이 필요한 서비스입니다")
+    }
+
+    window.addEventListener("hashchange", e => {
+        if (window.location.hash == "#svcrq") {
+            window.location.hash = ""
+            setWarning("로그인이 필요한 서비스입니다")
+        }
+    })
+
     return (
         <div className="sl_container">
             <div className="sl_start_page_wrapper">
@@ -57,7 +69,7 @@ export default function StudentRegistration() {
                 { warning ? <div className="sr_warning">{warning}</div> : null }
                 <div className="sl_input_hint">
                     <h2>로그인 키워드</h2>
-                    <div>로그인을 위한 키워드를 기재하여 주세요</div>
+                    <div className="mdownfont">로그인을 위한 키워드를 기재하여 주세요</div>
                 </div>
                 <div className="sl_input_forms">
                     <label htmlFor="keyword1">키워드 1</label>
@@ -69,7 +81,7 @@ export default function StudentRegistration() {
                 </div>
                 <div className="sl_input_hint">
                     <h2>학생 정보 입력하기</h2>
-                    <div>본인의 학번, 이름을 기재하여 주세요</div>
+                    <div className="mdownfont">본인의 학번, 이름을 기재하여 주세요</div>
                 </div>
                 <div className="sl_input_forms">
                     <label htmlFor="grade">학년</label>
@@ -82,6 +94,10 @@ export default function StudentRegistration() {
 
                 <div className="sl_btn_footer">
                     <button className="sl_submit_btn" onClick={e => clickListener(e.target as HTMLButtonElement, setWarning)}>제출</button>
+                </div>
+
+                <div className="sl_register_footer">
+                    <span className="mdownfont sl_rhint_l">아직 회원이 아닌가요?</span><a className="sl_underline " href="/register">회원가입</a>
                 </div>
             </div>
         </div>

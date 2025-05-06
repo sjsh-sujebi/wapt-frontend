@@ -13,16 +13,19 @@
 .mp_action_btn_group {
     display: flex;
     width: 400px;
+    max-width: 80vw;
     justify-content: space-between;
 }
 
 .mp_get_started_reverse_btn {
     width: 400px !important;
+    max-width: 80vw;
     align-self: center;
 }
 
 .mp_action_btn_group > * {
     width: 180px !important;
+    max-width: calc(40vw - 10px) !important;
 }
 
 .mp_title_card {
@@ -33,6 +36,12 @@
 .mp_get_help_btn, .mp_get_started_btn, .mp_get_started_reverse_btn {
     animation: goup 2s forwards;
     z-index: -1;
+}
+
+@media screen and (max-width: 440px){ 
+    .mp_container {
+        margin-bottom: 70px;
+    }
 }
 
 @media screen and (max-width: 850px){ 

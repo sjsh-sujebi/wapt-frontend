@@ -66,23 +66,23 @@ export default function StudentRegistration() {
                     <div><span className="upfont">SuJeBI</span> <span className="mdownfont">로그인을 위한 비밀 키워드를 설정해주세요</span></div>
                 </div>
                 <div className="sr_input_forms">
-                    <label htmlFor="keyword1">키워드 1</label>
+                    <label htmlFor="keyword1">키워드 <span className="upfont">1</span></label>
                     <input type="text" id="keyword1" placeholder="예) 바나나" className="sr_input_text sr_input" />
-                    <label htmlFor="keyword2">키워드 2</label>
+                    <label htmlFor="keyword2">키워드 <span className="upfont">2</span></label>
                     <input type="text" id="keyword2" placeholder="예) 스테이크" className="sr_input_text sr_input" />
-                    <label htmlFor="keyword3">키워드 3</label>
+                    <label htmlFor="keyword3">키워드 <span className="upfont">3</span></label>
                     <input type="text" id="keyword3" placeholder="예) 호박" className="sr_input_text sr_input" />
                 </div>
                 <div className="sr_input_hint">
                     <h2>학생 정보 입력하기</h2>
-                    <div className="mdownfont">본인의 학번, 이름을 기재하여 주세요</div>
+                    <div className="mdownfont">본인의 학생 정보를 기재하여 주세요</div>
                 </div>
                 <div className="sr_input_forms">
-                    <label htmlFor="grade">학년</label>
+                    <label htmlFor="grade">기수</label>
                     <input type="text" id="grade" placeholder="예) 2" className="sr_input_text sr_input" />
-                    <label htmlFor="class">반</label>
+                    <label htmlFor="class"><span className="upfont">1</span>학년 때의 반</label>
                     <input type="text" id="class" placeholder="예) 4" className="sr_input_text sr_input" />
-                    <label htmlFor="student_number">번호</label>
+                    <label htmlFor="student_number"><span className="upfont">1</span>학년 때의 번호</label>
                     <input type="text" id="student_number" placeholder="예) 17" className="sr_input_text sr_input" />
                 </div>
                 <div className="sr_input_hint">

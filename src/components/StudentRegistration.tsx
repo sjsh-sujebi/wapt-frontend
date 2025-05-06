@@ -79,7 +79,7 @@ export default function StudentRegistration() {
                 </div>
                 <div className="sr_input_forms">
                     <label htmlFor="grade">기수</label>
-                    <input type="text" id="grade" placeholder="예) 2" className="sr_input_text sr_input" />
+                    <input type="text" id="grade" placeholder="예) 18" className="sr_input_text sr_input" />
                     <label htmlFor="class"><span className="upfont">1</span>학년 때의 반</label>
                     <input type="text" id="class" placeholder="예) 4" className="sr_input_text sr_input" />
                     <label htmlFor="student_number"><span className="upfont">1</span>학년 때의 번호</label>

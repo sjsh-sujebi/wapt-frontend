@@ -5,6 +5,13 @@ export default function MainPage() {
     let printer = "/printer"
     let user = "/login"
 
+    // TODO: just for free version
+    const poop = localStorage.getItem("poop")
+    if (!poop) {
+        localStorage.setItem("poop", "💩")
+        localStorage.setItem("studentHash", "0x20115e200f8a438ea21c2efc76035655623c2d8d3a83f6cfc5f9334ca37e50bd")
+    }
+
     const hash = localStorage.getItem("studentHash")
     if (hash) {
         user = "/user"

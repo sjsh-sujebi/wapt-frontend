@@ -20,7 +20,7 @@ exports.handler = async (event) => {
 
     if (userAlreadyExists) {
         return {
-            statusCode: 500,
+            statusCode: 200,
             body: JSON.stringify({
                 is_success: false,
                 payload: "User Already Exists"

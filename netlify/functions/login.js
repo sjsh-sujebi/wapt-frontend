@@ -33,7 +33,7 @@ exports.handler = async (event) => {
     }
 
     return {
-        statusCode: 500,
+        statusCode: 200,
         body: JSON.stringify({
             is_success: false,
             payload: "Failed"

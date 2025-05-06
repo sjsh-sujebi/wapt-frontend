@@ -9,7 +9,7 @@ exports.handler = async (event) => {
         console.log(process.env.ADMIN_HASH)
         console.log(adminHash)
         return {
-            statusCode: 500,
+            statusCode: 200,
             body: JSON.stringify({
                 is_success: false,
                 payload: "Only admins are allowed to run this function"

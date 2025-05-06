@@ -10,7 +10,7 @@ exports.handler = async (event) => {
 
     if (adminHash != process.env.ADMIN_HASH) {
         return {
-            statusCode: 500,
+            statusCode: 200,
             body: JSON.stringify({
                 is_success: false,
                 payload: "Only admins are allowed to run this function"

@@ -29,8 +29,11 @@ exports.handler = async (event) => {
         }
     } catch (err) {
         return {
-            statusCode: 404,
-            body: JSON.stringify({ is_success: false, payload: "File not found" }),
+            statusCode: 202,
+            body: JSON.stringify({ 
+                is_success: false, 
+                payload: "File not found"
+            }),
         };
     }
 };

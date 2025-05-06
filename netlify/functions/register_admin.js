@@ -32,7 +32,7 @@ exports.handler = async (event) => {
 
     if (adminHash != process.env.ADMIN_HASH) {
         return {
-            statusCode: 500,
+            statusCode: 200,
             body: JSON.stringify({
                 is_success: false,
                 payload: "Only admins can run this function"
@@ -50,7 +50,7 @@ exports.handler = async (event) => {
 
     if (await contract.methods.verifyStudent(userHash).call({ from : wallet.address})) {
         return {
-            statusCode: 500,
+            statusCode: 200,
             body: JSON.stringify({
                 is_success: false,
                 payload: "User already exists"

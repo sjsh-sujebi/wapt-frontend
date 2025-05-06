@@ -2,7 +2,9 @@ import React, { useState } from "react"
 import "../styles/StudentRegistration.css"
 import axios from "axios"
 
-function clickListener(setWarning: (msg: string) => void) {
+function clickListener(target: HTMLButtonElement, setWarning: (msg: string) => void) {
+    target.classList.add("sr_btn_deactivated")
+
     const keyword1 = (document.querySelector("#keyword1") as HTMLInputElement).value
     const keyword2 = (document.querySelector("#keyword2") as HTMLInputElement).value
     const keyword3 = (document.querySelector("#keyword3") as HTMLInputElement).value
@@ -38,7 +40,12 @@ function clickListener(setWarning: (msg: string) => void) {
             if (response.is_success) {
                 window.location.href = "/processing"
             } else {
-                alert(response.payload.msg)
+                target.classList.remove("sr_btn_deactivated")
+                setWarning("이미 존재하거나 승인 대기 중입니다.")
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                })
             }
         })
 	}
@@ -87,7 +94,7 @@ export default function StudentRegistration() {
                 </div>
 
                 <div className="sr_btn_footer">
-                    <button className="sr_submit_btn" onClick={() => clickListener(setWarning)}>제출</button>
+                    <button className="sr_submit_btn" onClick={e => clickListener(e.target as HTMLButtonElement, setWarning)}>제출</button>
                 </div>
             </div>
         </div>

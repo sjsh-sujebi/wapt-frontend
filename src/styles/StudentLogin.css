@@ -56,6 +56,15 @@
     cursor: pointer;
 }
 
+.sl_btn_deactivated {
+    background-color: rgb(131, 131, 131) !important;
+}
+
+.sl_btn_deactivated:hover {
+    cursor: not-allowed !important;
+    transform: none !important;
+}
+
 .sl_warning {
     background-color: rgb(255, 72, 72);
     border-radius: 10px;

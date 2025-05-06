@@ -1,4 +1,4 @@
-const { getStore } = require('@netlify/blobs');
+import { getStore } from '@netlify/blobs';
 
 async function blobToBase64(blob) {
     const arrayBuffer = await blob.arrayBuffer();

@@ -1,4 +1,4 @@
-const ABI = [
+export const ABI = [
 	{
 		"inputs": [
 			{
@@ -169,8 +169,8 @@ const ABI = [
 	}
 ]
 
-const { initializeApp } = require("firebase/app");
-const { getDatabase, onValue, ref, set } = require('firebase/database')
+import { initializeApp } from "firebase/app"
+import { getDatabase, onValue, ref, set } from 'firebase/database'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -189,9 +189,4 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig)
 
-const db = getDatabase(app, 'https://wapt-14dde-default-rtdb.asia-southeast1.firebasedatabase.app');
-
-module.exports = {
-	ABI,
-	db
-}
+export const db = getDatabase(app, 'https://wapt-14dde-default-rtdb.asia-southeast1.firebasedatabase.app');

@@ -1,5 +1,5 @@
-const { getStore } = require('@netlify/blobs')
-const { v4: uuidv4 } = require('uuid')
+import { getStore } from '@netlify/blobs'
+import { v4 as uuidv4 } from 'uuid'
 
 exports.handler = async (event) => {
     const store = await getStore({ name: "uploads", siteID: process.env.siteID, token: process.env.TOKEN })

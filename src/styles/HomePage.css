@@ -16,9 +16,10 @@
     display: flex;
     justify-content: space-around;
     width: 50%;
+    margin-bottom: 70px;
 }
 
-.hp_acc_info_card > button {
+.hp_acc_info_card > button, .hp_admin_panel_info_card > button {
     border: none;
     background-color: black;
     padding: 7px 14px;
@@ -26,9 +27,40 @@
     color: white;
 }
 
-.hp_acc_info_card > button:hover {
+.hp_acc_info_card > button:hover, .hp_admin_panel_info_card > button:hover {
     transform: scale(1.1);
     cursor: pointer;
+}
+
+.hp_admin_panel_title {
+    margin: 20px 40px;
+}
+
+.hp_admin_panel {
+    width: 50%;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 70px;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.hp_admin_panel:hover {
+    background-color: rgba(211, 211, 211, 0.7);
+    cursor: pointer;
+}
+
+.hp_admin_panel > img {
+    margin: 30px;
+}
+
+.hp_admin_panel_info_card {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
 }
 
 .hp_acc_info_element {

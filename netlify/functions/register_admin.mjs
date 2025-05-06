@@ -59,10 +59,10 @@ exports.handler = async (event) => {
         }
     }
 
-    const searchRef = ref(db, `/registered_users/${studentData.gradeNumber}/${studentData.classNumber}/${studentData.studentNumber}`)
+    const searchRef = ref(db, `${process.env.SECRET_FIREBASE_KEY}/registered_users/${studentData.gradeNumber}/${studentData.classNumber}/${studentData.studentNumber}`)
     await set(searchRef, "is_user")
 
-    const removeRef = ref(db, `/register_candidates/${dataUUID}`)
+    const removeRef = ref(db, `${process.env.SECRET_FIREBASE_KEY}/register_candidates/${dataUUID}`)
     await remove(removeRef)
     
     await uploadStudent(userHash, signature)

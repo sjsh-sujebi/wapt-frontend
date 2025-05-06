@@ -12,6 +12,7 @@ import StudentLogin from './components/StudentLogin';
 import HowToUse from './components/HowToUse';
 import Printer from './components/Printer';
 import User from './components/User';
+import AddTokens from './components/AddTokens';
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,12 @@ const router = createBrowserRouter([
     path: '/usage',
     element: (
       <App child={<HowToUse />} />
+    )
+  },
+  {
+    path: '/charge',
+    element: (
+      <App child={<AddTokens />}/>
     )
   }
 ])

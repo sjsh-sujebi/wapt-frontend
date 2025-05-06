@@ -1,8 +1,9 @@
-import { db } from "../../globals.js"
+import { getDB } from "../../globals.js"
 import { ref, onValue, set } from "firebase/database"
 import { v4 as uuidv4 } from "uuid"
 
 exports.handler = async (event) => {
+    const db = getDB()
     const jsonBody = JSON.parse(event.body)
 
     const studentData = jsonBody

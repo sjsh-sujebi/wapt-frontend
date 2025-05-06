@@ -1,7 +1,8 @@
-import { db } from "../../globals.js"
+import { getDB } from "../../globals.js"
 import { ref, onValue, set } from "firebase/database"
 
 exports.handler = async (event) => {
+    const db = getDB()
     const messageRef = ref(db, "/register_candidates")
 
     const jsonBody = JSON.parse(event.body)

@@ -124,7 +124,7 @@
     min-width: 360px !important;
 }
 
-.navbar-menu-expanded > .navbar-menu-help, .navbar-menu-expanded > .navbar-menu-login {
+.navbar-menu-expanded > .navbar-menu-help, .navbar-menu-expanded > .navbar-menu-login, .navbar-menu-expanded > .navbar-menu-register {
     text-align: center;
 }
 

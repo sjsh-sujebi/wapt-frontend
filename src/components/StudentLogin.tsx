@@ -2,7 +2,9 @@ import React, { useState } from "react"
 import "../styles/StudentLogin.css"
 import axios from "axios"
 
-function clickListener(setWarning: (msg: string) => void) {
+function clickListener(target: HTMLButtonElement, setWarning: (msg: string) => void) {
+    target.classList.add("sl_btn_deactivated")
+    
     const keyword1 = (document.querySelector("#keyword1") as HTMLInputElement).value
     const keyword2 = (document.querySelector("#keyword2") as HTMLInputElement).value
     const keyword3 = (document.querySelector("#keyword3") as HTMLInputElement).value
@@ -32,6 +34,13 @@ function clickListener(setWarning: (msg: string) => void) {
         if (response.is_success) {
             window.localStorage.setItem("studentHash", response.payload.userHash)
             window.location.href = "/mypage"
+        } else {
+            setWarning("로그인에 실패하였습니다.")
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            })
+            target.classList.remove("sl_btn_deactivated")
         }
     })
 }
@@ -72,7 +81,7 @@ export default function StudentRegistration() {
                 </div>
 
                 <div className="sl_btn_footer">
-                    <button className="sl_submit_btn" onClick={() => clickListener(setWarning)}>제출</button>
+                    <button className="sl_submit_btn" onClick={e => clickListener(e.target as HTMLButtonElement, setWarning)}>제출</button>
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
-require("dotenv").config()
-const { ABI, db } = require("../../globals.js")
-const { Web3 } = require('web3')
-const { set, remove, ref } = require("firebase/database")
+import "dotenv/config"
+import { ABI, db } from "../../globals.js"
+import { Web3 } from 'web3'
+import { set, remove, ref } from "firebase/database"
 
 exports.handler = async (event) => {
     const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS

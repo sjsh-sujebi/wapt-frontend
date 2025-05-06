@@ -1,14 +1,13 @@
-const { db } = require("../../globals.js")
-const { ref, onValue, set } = require("firebase/database")
+import "dotenv/config"
 
 exports.handler = async (event) => {
-    const messageRef = ref(db, "/register_candidates")
-
     const jsonBody = JSON.parse(event.body)
 
     const { adminHash } = jsonBody
 
     if (adminHash != process.env.ADMIN_HASH) {
+        console.log(process.env.ADMIN_HASH)
+        console.log(adminHash)
         return {
             statusCode: 200,
             body: JSON.stringify({
@@ -18,21 +17,11 @@ exports.handler = async (event) => {
         }
     }
 
-    const candidates = await new Promise((resolve, reject) => {
-        onValue(messageRef, snapshot => {
-            const candidates = snapshot.val()
-
-            resolve(candidates ?? {})
-        })
-    })
-
     return {
         statusCode: 200,
         body: JSON.stringify({
             is_success: true,
-            payload: {
-                candidates: candidates ?? {}
-            }
+            payload: "Success!"
         })
     }
 }

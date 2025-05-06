@@ -1,6 +1,6 @@
-require("dotenv").config()
-const { ABI } = require("../../globals.js")
-const { Web3 } = require('web3')
+import "dotenv/config"
+import { ABI } from "../../globals.js"
+import { Web3 } from 'web3'
 
 exports.handler = async (event) => {
     const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS

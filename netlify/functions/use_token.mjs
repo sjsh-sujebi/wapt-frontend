@@ -1,6 +1,6 @@
-require("dotenv").config()
-const { ABI } = require("../../globals.js")
-const { Web3 } = require('web3')
+import "dotenv/config"
+import { ABI } from "../../globals.js"
+import { Web3 } from 'web3'
 
 const isBytes32 = (str) => {
     return /^0x[a-fA-F0-9]{64}$/.test(str);

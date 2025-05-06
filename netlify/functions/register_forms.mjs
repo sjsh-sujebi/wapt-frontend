@@ -1,6 +1,6 @@
-const { db } = require("../../globals.js")
-const { ref, onValue, set } = require("firebase/database")
-const { v4: uuidv4 } = require("uuid")
+import { db } from "../../globals.js"
+import { ref, onValue, set } from "firebase/database"
+import { v4 as uuidv4 } from "uuid"
 
 exports.handler = async (event) => {
     const jsonBody = JSON.parse(event.body)

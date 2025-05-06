@@ -10,12 +10,27 @@
     margin: 20px;
 }
 
+.mp_action_btn_group {
+    display: flex;
+    width: 400px;
+    justify-content: space-between;
+}
+
+.mp_get_started_reverse_btn {
+    width: 400px !important;
+    align-self: center;
+}
+
+.mp_action_btn_group > * {
+    width: 180px !important;
+}
+
 .mp_title_card {
     animation: godown 2s;
     max-width: 850px;
 }
 
-.mp_get_help_btn, .mp_get_started_btn {
+.mp_get_help_btn, .mp_get_started_btn, .mp_get_started_reverse_btn {
     animation: goup 2s;
 }
 
@@ -80,6 +95,17 @@
     width: 250px;
 }
 
+.mp_get_started_reverse_btn {
+    margin-top: 20px;
+    padding: 10px;
+    border: none;
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 250px;
+}
+
 .mp_title:hover {
     cursor: pointer
 }
@@ -107,6 +133,11 @@
 }
 
 .mp_get_started_btn:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.mp_get_started_reverse_btn:hover {
     transform: scale(1.1);
     cursor: pointer;
 }

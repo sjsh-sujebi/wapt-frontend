@@ -101,13 +101,23 @@ export default function HomePage() {
                     <button onClick={() => alert("토큰 없이도 서비스 사용이 가능합니다!")}>충전하기</button>
             </div>
 
+            {
+                (() => {
+                    if (isAdmin) {
+                        return <h1 className="upfont hp_admin_panel_title">ADMIN PANEL</h1>
+                    }
+                })()
+            }
+
             {(() => {
                 if (isAdmin) {
                     return candidates.map(e => (
-                        <div>
+                        <div className="hp_admin_panel">
                             <img src={e.base64Image} width="100" />
-                            <div>{e.gradeNumber}학년 {e.classNumber}반 {e.studentNumber}번</div>
-                            <button onClick={() => { approveStudent(hash!!, e) }}>승인</button>
+                            <div className="hp_admin_panel_info_card">
+                                <span className="hp_admin_panel_info_element"><span className="upfont">{e.gradeNumber}</span>기 <span className="upfont">1</span>학년 <span className="upfont">{e.classNumber}</span>반 <span className="upfont">{e.studentNumber}</span>번</span>
+                                <button onClick={() => { approveStudent(hash!!, e) }}>승인</button>
+                            </div>
                         </div>
                     ))
                 }

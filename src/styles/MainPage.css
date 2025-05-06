@@ -31,7 +31,8 @@
 }
 
 .mp_get_help_btn, .mp_get_started_btn, .mp_get_started_reverse_btn {
-    animation: goup 2s;
+    animation: goup 2s forwards;
+    z-index: -1;
 }
 
 @media screen and (max-width: 850px){ 
@@ -65,10 +66,12 @@
 
     80% {
         opacity: 1;
+        z-index: -1
     }
 
     100% {
         transform: translateY(0);
+        z-index: 5;
     }
 }
 
@@ -128,17 +131,17 @@
 }
 
 .mp_get_help_btn:hover {
-    transform: scale(1.1);
+    transform: scale(1.1) !important;
     cursor: pointer;
 }
 
 .mp_get_started_btn:hover {
-    transform: scale(1.1);
+    transform: scale(1.1) !important;
     cursor: pointer;
 }
 
 .mp_get_started_reverse_btn:hover {
-    transform: scale(1.1);
+    transform: scale(1.05) !important;
     cursor: pointer;
 }
 

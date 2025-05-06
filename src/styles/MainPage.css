@@ -38,6 +38,16 @@
     z-index: -1;
 }
 
+@media screen and (max-width: 360px){ 
+    .mp_action_btn_group, .mp_get_started_reverse_btn {
+        max-width: calc(360px * 0.8);
+    }
+
+    .mp_action_btn_group > * {
+        max-width: calc(360px * 0.4 - 10px) !important;
+    }
+}
+
 @media screen and (max-width: 440px){ 
     .mp_container {
         margin-bottom: 70px;

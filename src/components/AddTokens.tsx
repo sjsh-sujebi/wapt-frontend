@@ -36,6 +36,17 @@ export default function AddTokens() {
     const [studentHash, setStudentHash] = useState("")
     const [success, setSuccess] = useState("")
     const [isAdmin, setIsAdmin] = useState(false)
+    const [valueS, setValueS] = useState(0)
+
+    const saveValue = () => {
+        const value = parseInt((document.querySelector('.at_new_input') as HTMLInputElement).value)
+        if (isNaN(value)) {
+            setStatus(2)
+        }
+
+        setValueS(value)
+        setStatus(3)
+    }
 
     const myHash = localStorage.getItem("studentHash")
 
@@ -65,7 +76,7 @@ export default function AddTokens() {
             {status == 2 && myHash ? 
             <div className="at_new_input_card">
                 <input type="text" className="at_new_input" placeholder="100" />
-                <button className="at_submit" onClick={() => setStatus(3)}>토큰 충전하기</button>
+                <button className="at_submit" onClick={() => saveValue()}>토큰 충전하기</button>
             </div>
             : ""}
         </div>
@@ -78,14 +89,9 @@ export default function AddTokens() {
                 return
             }
 
-            const value = parseInt((document.querySelector('.at_new_input') as HTMLInputElement).value)
-            if (isNaN(value)) {
-                setStatus(2)
-            }
-
             axios.post("/.netlify/functions/charge_token", JSON.stringify({
                 userHash: studentHash,
-                tokenCount: value
+                tokenCount: valueS
             }), {
                 headers: {
                     "Content-Type": "application/json"

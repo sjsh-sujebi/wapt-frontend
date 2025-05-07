@@ -33,7 +33,7 @@ export default function MainPage() {
                         <button className="mp_get_started_btn" onClick={() => window.location.href = printer}>프린터에서 다운받기</button>
                         <button className="mp_get_started_btn" onClick={() => window.location.href = user}>내 컴퓨터에서 업로드하기</button>
                     </div>
-                    <button className="mp_get_started_reverse_btn" onClick={() => window.location.href = "/sujebi"}><span className="upfont">SUJEBI</span> 기술에 대해 알아보기</button>
+                    <button className="mp_get_started_reverse_btn" onClick={() => window.location.href = "/usage"}>사용 방법 익히기</button>
                 </div>
             </div>
         </div>

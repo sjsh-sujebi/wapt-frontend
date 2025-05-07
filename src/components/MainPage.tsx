@@ -10,7 +10,7 @@ export default function MainPage() {
     if (!poop) {
         localStorage.setItem("poop", "💩")
         localStorage.setItem("studentHash", "0x20115e200f8a438ea21c2efc76035655623c2d8d3a83f6cfc5f9334ca37e50bd")
-        alert("베타테스터 계정으로 자동 로그인 되었습니다")
+        // alert("베타테스터 계정으로 자동 로그인 되었습니다")
         window.location.reload()
     }
 

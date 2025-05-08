@@ -29,7 +29,7 @@ export const openChannel = (code: string, callback: (blobId: string, fileName: s
     const messageRef = ref(db, `codes/${code}/`)
     onValue(messageRef, (snapshot) => {
         const data = snapshot.val()
-        if (data == null) {
+        if (data == null || data == "<aliababa>") {
             return
         }
         const [blobId, fileName] = data.split("/")

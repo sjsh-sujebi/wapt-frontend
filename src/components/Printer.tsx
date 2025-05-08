@@ -13,7 +13,7 @@ export default function HomePage() {
     useEffect(() => {
         openChannel(code, (blobId, fileName) => {
             setStatus(1)
-            axios.post("/.netlify/functions/download", JSON.stringify({ blobId, fileName }), {
+            axios.post("/.netlify/functions/download", JSON.stringify({ blobId, fileName, code: parseInt(code) }), {
                 headers: {
                     "Content-Type": "application/json"
                 },

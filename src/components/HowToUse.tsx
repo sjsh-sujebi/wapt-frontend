@@ -10,7 +10,7 @@ export default function HowToUse() {
         <div className="htu_container">
             <h1><span className="upfont">WFT</span> <span className="mdownfont">사용 매뉴얼</span></h1>
 
-            <h2 id="register" onClick={() => clip("register")}># 회원가입</h2>
+            {/* <h2 id="register" onClick={() => clip("register")}># 회원가입</h2>
             <img src="/0.png" alt="" />
             <div className="mdownfont">
             처음 들어왔을 때는 우측 상단에 회원가입 버튼을 눌렀을 때, 바로 회원가입 페이지로 넘어갑니다. 모바일의 경우 이 옵션은 우측 상단의 더보기 아이콘을 클릭하면 볼 수 있습니다.
@@ -52,12 +52,12 @@ export default function HowToUse() {
             나를 인증할 수 있는 <span className="upfont">QR</span> 코드와 로그아웃 버튼이 있는 것을 확인합니다. 이 <span className="upfont">QR</span> 코드는 절대 공유하지 마십시오.
             </div>
             <br />
-            <br />
+            <br /> */}
 
             <h2 id="filetransfer" onClick={() => clip("filetransfer")}># 파일 주고 받기</h2>
             <img src="/5.png" alt="" />
             <div className="mdownfont">
-            <span className="htu_highlight">프린터 측의 컴퓨터</span>에서 <span className="htu_highlight">로그인 없이</span> 우측 상단에서 "프린터용"을 클릭합니다. 또는, 중앙에 "프린터에서 다운받기"를 클릭해도 됩니다.
+            <span className="htu_highlight">프린터 측의 컴퓨터</span>에서 우측 상단에서 "프린터용"을 클릭합니다. 또는, 중앙에 "프린터에서 다운받기"를 클릭해도 됩니다.
             </div>
             <img src="/7.png" alt="" />
             <div className="mdownfont">
@@ -65,7 +65,7 @@ export default function HowToUse() {
             </div>
             <img src="/5.png" alt="" />
             <div className="mdownfont">
-            <span className="htu_highlight">파일을 보낼 컴퓨터</span>에서 <span className="htu_highlight">로그인을 하고</span> 우측 상단에서 "내 컴퓨터용"을 클릭합니다. 또는, 중앙에 "내 컴퓨터에서 업로드하기"를 클릭해도 됩니다.
+            <span className="htu_highlight">파일을 보낼 컴퓨터</span>에서 우측 상단에서 "내 컴퓨터용"을 클릭합니다. 또는, 중앙에 "내 컴퓨터에서 업로드하기"를 클릭해도 됩니다.
             </div>
             <img src="/8.png" alt="" />
             <div className="mdownfont">

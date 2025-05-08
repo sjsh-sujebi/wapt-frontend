@@ -6,13 +6,13 @@ export default function MainPage() {
     let user = "/login"
 
     // TODO: just for free version
-    // const poop = localStorage.getItem("poop")
-    // if (!poop) {
-    //     localStorage.setItem("poop", "💩")
-    //     localStorage.setItem("studentHash", "0x20115e200f8a438ea21c2efc76035655623c2d8d3a83f6cfc5f9334ca37e50bd")
-    //     alert("베타테스터 계정으로 자동 로그인 되었습니다")
-    //     window.location.reload()
-    // }
+    const poop = localStorage.getItem("poop")
+    if (!poop) {
+        localStorage.setItem("poop", "💩")
+        localStorage.setItem("studentHash", "0x20115e200f8a438ea21c2efc76035655623c2d8d3a83f6cfc5f9334ca37e50bd")
+        // alert("베타테스터 계정으로 자동 로그인 되었습니다")
+        window.location.reload()
+    }
 
     const hash = localStorage.getItem("studentHash")
     if (hash) {
@@ -33,7 +33,7 @@ export default function MainPage() {
                         <button className="mp_get_started_btn" onClick={() => window.location.href = printer}>프린터에서 다운받기</button>
                         <button className="mp_get_started_btn" onClick={() => window.location.href = user}>내 컴퓨터에서 업로드하기</button>
                     </div>
-                    <button className="mp_get_started_reverse_btn" onClick={() => window.location.href = "/sujebi"}><span className="upfont">SUJEBI</span> 기술에 대해 알아보기</button>
+                    <button className="mp_get_started_reverse_btn" onClick={() => window.location.href = "/usage"}>사용 방법 익히기</button>
                 </div>
             </div>
         </div>

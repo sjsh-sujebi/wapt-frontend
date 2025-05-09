@@ -40,24 +40,24 @@ const connectToPrinter = async (setUUID: (uuid: string) => void, setCode: (code:
 
 function transaction(userHash: string, callback: () => void) {
     // TODO: Free version only
-    // callback()
+    callback()
     // TODO end
 
 
     // TODO: uncomment below for non-free version
-    axios.post("/.netlify/functions/use_token", JSON.stringify({ userHash }), {
-        headers: {
-            "Content-Type": "application/json"
-        }
-    }).then(data => {
-        const response = data.data as APIResponse
+    // axios.post("/.netlify/functions/use_token", JSON.stringify({ userHash }), {
+    //     headers: {
+    //         "Content-Type": "application/json"
+    //     }
+    // }).then(data => {
+    //     const response = data.data as APIResponse
     
-        if (!response.is_success) {
-            alert("PaymentError: 개발자에게 문의해 주세요")
-        } else {
-            callback()
-        }
-    })
+    //     if (!response.is_success) {
+    //         alert("PaymentError: 개발자에게 문의해 주세요")
+    //     } else {
+    //         callback()
+    //     }
+    // })
     // TODO end
 }
 
@@ -137,15 +137,15 @@ export default function User() {
                 setSelectedFile(selectedFile)
                 
                 // TODO: Free version only
-                // sign_transaction(setSuccess, myHash!!, selectedFile, code)
+                sign_transaction(setSuccess, myHash!!, selectedFile, uuid)
                 // TODO end
             } else {
                 return
             }
             
             // TODO: Uncomment below for non-free version
-            document.querySelector(".us_file_send_popup")?.classList.remove("us_no_display")
-            document.querySelector(".us_file_send_popup_background")?.classList.remove("us_no_display")
+            // document.querySelector(".us_file_send_popup")?.classList.remove("us_no_display")
+            // document.querySelector(".us_file_send_popup_background")?.classList.remove("us_no_display")
             // TODO end
         });
 

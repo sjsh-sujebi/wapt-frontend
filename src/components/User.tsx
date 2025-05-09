@@ -3,7 +3,7 @@ import "../styles/User.css"
 import axios from "axios";
 import { uploadToChannel } from "../utils/firebase";
 
-const connectToPrinter = (setCode: (code: number) => void, setWarning: (warning: string) => void, setStatus: (status: number) => void) => {
+const connectToPrinter = async (setUUID: (uuid: string) => void, setCode: (code: number) => void, setWarning: (warning: string) => void, setStatus: (status: number) => void) => {
     const printerNumberString = (document.querySelector("#printerNumber") as HTMLInputElement).value
     const printerNumberInt = parseInt(printerNumberString, 10)
 
@@ -19,7 +19,21 @@ const connectToPrinter = (setCode: (code: number) => void, setWarning: (warning:
         return
     }
 
+    const data = await axios.post("/.netlify/functions/get_uuid", JSON.stringify({ code: printerNumberInt }), {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+
+    const response = data.data as APIResponse
+
+    if (!response.is_success) {
+        alert("존재하지 않는 코드입니다")
+        return 
+    }
+
     setCode(printerNumberInt)
+    setUUID(response.payload.uuid)
     setStatus(1)
     setWarning("")
 }
@@ -47,7 +61,7 @@ function transaction(userHash: string, callback: () => void) {
     // TODO end
 }
 
-function sign_transaction(set_success: (msg: string) => void, myHash: string, selectedFile: File, code: number) {
+function sign_transaction(set_success: (msg: string) => void, myHash: string, selectedFile: File, uuid: string) {
     document.querySelector("#verify_payment")?.classList.add("us_submit_deactivated")
     transaction(myHash, () => {
         const reader = new FileReader()
@@ -64,7 +78,7 @@ function sign_transaction(set_success: (msg: string) => void, myHash: string, se
             }).then(res => {
                 const response = res.data as APIResponse
                 if (response.is_success) {
-                    uploadToChannel(code.toString(), response.payload.blobId, response.payload.fileName)
+                    uploadToChannel(uuid.toString(), response.payload.blobId, response.payload.fileName)
                     set_success(`성공적으로 파일을 전송하였습니다!`)
                     document.querySelector("#file_selection_btn")?.classList.remove("us_submit_deactivated")
                     document.querySelector(".us_file_send_popup")?.classList.add("us_no_display")
@@ -84,6 +98,7 @@ export default function User() {
     const [success, setSuccess] = useState("")
     const [currentTokens, setCurrentTokens] = useState(-1)
     const [selectedFile, setSelectedFile] = useState<File | null>(null)
+    const [uuid, setUUID] = useState("")
 
     const myHash = localStorage.getItem("studentHash")
 
@@ -148,7 +163,7 @@ export default function User() {
             <h1 className="us_title">프린터 컴퓨터에 제시된 번호를 입력하세요</h1>
             { warning ? <div className="us_warning">{warning}</div> : null }
             <input type="text" className="us_new_input" id="printerNumber" autoComplete="off" placeholder="예시) 8080" />
-            <input type="button" className='us_submit' onClick={() => connectToPrinter(setCode, setWarning, setStatus)} value="프린터와 연결하기" />
+            <input type="button" className='us_submit' onClick={() => connectToPrinter(setUUID, setCode, setWarning, setStatus)} value="프린터와 연결하기" />
         </div>
     )
 
@@ -187,7 +202,7 @@ export default function User() {
                             if (selectedFile != null) {
                                 return (<>
                                     <div className="us_curr_token_div">선택된 파일: {selectedFile.name}</div>
-                                    <button className="us_submit" id="verify_payment" onClick={() => sign_transaction(setSuccess, myHash, selectedFile, code)}>승인</button>
+                                    <button className="us_submit" id="verify_payment" onClick={() => sign_transaction(setSuccess, myHash, selectedFile, uuid)}>승인</button>
                                 </>)
                             }
 

@@ -7,11 +7,12 @@ import { v4 as uuidv4 } from 'uuid'
 
 export default function HomePage() {
     const [code, setCode] = useState(createRandomCode().toString())
+    const myUUID = uuidv4()
     const [status, setStatus] = useState(0)  // 0: initial, 1: blob downloaded
     const [downloadLinks, setDownloadLinks] = useState<ReactElement[]>([])
 
     useEffect(() => {
-        openChannel(code, (blobId, fileName) => {
+        openChannel(code, myUUID, (blobId, fileName) => {
             setStatus(1)
             axios.post("/.netlify/functions/download", JSON.stringify({ blobId, fileName, code: parseInt(code) }), {
                 headers: {

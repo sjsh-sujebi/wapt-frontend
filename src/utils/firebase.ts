@@ -25,8 +25,10 @@ export const createRandomCode = () => {
     return digits
 }
 
-export const openChannel = (code: string, callback: (blobId: string, fileName: string) => void) => {
-    const messageRef = ref(db, `codes/${code}/`)
+export const openChannel = (code: string, uuid: string, callback: (blobId: string, fileName: string) => void) => {
+    const messageRef = ref(db, `/codes/${uuid}/`)
+    const uuidRef = ref(db, `/uuids/${code}`)
+    set(uuidRef, uuid)
     onValue(messageRef, (snapshot) => {
         const data = snapshot.val()
         if (data == null || data == "<aliababa>") {
@@ -37,7 +39,7 @@ export const openChannel = (code: string, callback: (blobId: string, fileName: s
     })
 }
 
-export const uploadToChannel = (code: string, blobId: string, fileName: string) => {
-    const messageRef = ref(db, `codes/${code}/`)
+export const uploadToChannel = (uuid: string, blobId: string, fileName: string) => {
+    const messageRef = ref(db, `/codes/${uuid}/`)
     set(messageRef, `${blobId}/${fileName}`)
 }

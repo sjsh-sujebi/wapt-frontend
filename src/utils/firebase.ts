@@ -31,7 +31,7 @@ export const openChannel = (code: string, uuid: string, callback: (blobId: strin
     set(uuidRef, uuid)
     onValue(messageRef, (snapshot) => {
         const data = snapshot.val()
-        if (data == null || data == "<aliababa>") {
+        if (data == null) {
             return
         }
         const [blobId, fileName] = data.split("/")

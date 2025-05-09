@@ -1,4 +1,4 @@
-import { set, ref } from 'firebase/database'
+import { remove, ref } from 'firebase/database'
 import { getDB } from '../../globals';
 import { getStore } from '@netlify/blobs'
 
@@ -17,7 +17,7 @@ exports.handler = async (event) => {
         await store.delete(blobId)
 
         const messageRef = ref(db, `/codes/${uuid}`)
-        set(messageRef, "<aliababa>")
+        await remove(messageRef)
 
         return {
             statusCode: 200,

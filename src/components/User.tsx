@@ -61,7 +61,7 @@ function transaction(userHash: string, callback: () => void) {
     // TODO end
 }
 
-function sign_transaction(set_success: (msg: string) => void, myHash: string, selectedFile: File, uuid: string) {
+function sign_transaction(set_success: (msg: string) => void, myHash: string, selectedFile: File, uuid: string, code: string) {
     document.querySelector("#verify_payment")?.classList.add("us_submit_deactivated")
     transaction(myHash, () => {
         const reader = new FileReader()
@@ -69,7 +69,7 @@ function sign_transaction(set_success: (msg: string) => void, myHash: string, se
         reader.onload = function (e) {
             const base64File = reader.result
             console.log(selectedFile.type)
-            const data = { fileName: selectedFile.name, contentType: selectedFile.type, base64File }
+            const data = { fileName: selectedFile.name, contentType: selectedFile.type, base64File, code }
             
             axios.post("/.netlify/functions/upload", JSON.stringify(data), {
                 headers: {
@@ -137,7 +137,7 @@ export default function User() {
                 setSelectedFile(selectedFile)
                 
                 // TODO: Free version only
-                sign_transaction(setSuccess, myHash!!, selectedFile, uuid)
+                sign_transaction(setSuccess, myHash!!, selectedFile, uuid, code.toString())
                 // TODO end
             } else {
                 return
@@ -202,7 +202,7 @@ export default function User() {
                             if (selectedFile != null) {
                                 return (<>
                                     <div className="us_curr_token_div">선택된 파일: {selectedFile.name}</div>
-                                    <button className="us_submit" id="verify_payment" onClick={() => sign_transaction(setSuccess, myHash, selectedFile, uuid)}>승인</button>
+                                    <button className="us_submit" id="verify_payment" onClick={() => sign_transaction(setSuccess, myHash, selectedFile, uuid, code.toString())}>승인</button>
                                 </>)
                             }
 

@@ -1,6 +1,7 @@
 import { getStore } from '@netlify/blobs'
 import { v4 as uuidv4 } from 'uuid'
 import { Web3 } from 'web3'
+import { TamperProofABI } from '../../globals';
 
 exports.handler = async (event) => {
     const CONTRACT_ADDRESS = process.env.CONTRACT_TAMPER_PROOF
@@ -8,7 +9,7 @@ exports.handler = async (event) => {
     const web3 = new Web3(process.env.INFURA_RPC_URL)
 
     const wallet = await web3.eth.accounts.decrypt(contractOwnerKey, "gom123#")
-    const contract = new web3.eth.Contract(ABI, CONTRACT_ADDRESS);
+    const contract = new web3.eth.Contract(TamperProofABI, CONTRACT_ADDRESS);
 
     const store = await getStore({ name: "uploads", siteID: process.env.siteID, token: process.env.TOKEN })
     if (event.httpMethod !== 'POST') {

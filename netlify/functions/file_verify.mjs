@@ -1,4 +1,5 @@
 import { Web3 } from "web3"
+import { TamperProofABI } from "../../globals"
 
 exports.handler = async (event) => {
     const CONTRACT_ADDRESS = process.env.CONTRACT_TAMPER_PROOF
@@ -6,7 +7,7 @@ exports.handler = async (event) => {
     const web3 = new Web3(process.env.INFURA_RPC_URL)
 
     const wallet = await web3.eth.accounts.decrypt(contractOwnerKey, "gom123#")
-    const contract = new web3.eth.Contract(ABI, CONTRACT_ADDRESS);
+    const contract = new web3.eth.Contract(TamperProofABI, CONTRACT_ADDRESS);
 
     const jsonBody = JSON.parse(event.body)
     const { base64File, code } = jsonBody

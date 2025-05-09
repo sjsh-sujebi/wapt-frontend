@@ -1,5 +1,6 @@
 import { getStore } from '@netlify/blobs'
 import { v4 as uuidv4 } from 'uuid'
+import { Web3 } from 'web3'
 
 exports.handler = async (event) => {
     const CONTRACT_ADDRESS = process.env.CONTRACT_TAMPER_PROOF

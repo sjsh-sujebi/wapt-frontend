@@ -7,12 +7,12 @@ export const TamperProofABI = [
 				"type": "bytes32"
 			}
 		],
-		"name": "timestamp",
+		"name": "is_signed",
 		"outputs": [
 			{
-				"internalType": "uint256",
+				"internalType": "bool",
 				"name": "",
-				"type": "uint256"
+				"type": "bool"
 			}
 		],
 		"stateMutability": "view",
@@ -42,9 +42,9 @@ export const TamperProofABI = [
 		"name": "verifyFileHash",
 		"outputs": [
 			{
-				"internalType": "uint256",
+				"internalType": "bool",
 				"name": "",
-				"type": "uint256"
+				"type": "bool"
 			}
 		],
 		"stateMutability": "view",

@@ -29,7 +29,7 @@ exports.handler = async (event) => {
         from: wallet.address,
         to: CONTRACT_ADDRESS,
         maxFeePerGas: block.baseFeePerGas * 2n,
-        maxPriorityFeePerGas: 100000,
+        maxPriorityFeePerGas: 1,
         data: contract.methods.uploadFileHash(fileHash).encodeABI()
     }
     

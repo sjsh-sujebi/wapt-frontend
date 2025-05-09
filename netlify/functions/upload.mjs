@@ -23,15 +23,19 @@ exports.handler = async (event) => {
 
     const fileHash = web3.utils.sha3(toHash)
 
-    const block = await web3.eth.getBlock();
-    
-    const tx = {
+    const tx_draft = {
         from: wallet.address,
         to: CONTRACT_ADDRESS,
-        maxFeePerGas: block.baseFeePerGas * 2n,
-        maxPriorityFeePerGas: 100000,
         data: contract.methods.uploadFileHash(fileHash).encodeABI()
     }
+
+    const estimated_gas = web3.eth.estimateGas(tx_draft)
+
+    const tx = {
+        ...tx_draft,
+        gas: estimated_gas
+    }
+
     
     const signtx = await web3.eth.accounts.signTransaction(tx, wallet.privateKey)
     

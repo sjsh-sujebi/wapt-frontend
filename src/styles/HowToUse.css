@@ -4,6 +4,7 @@
     align-items: center;
     background-color: rgba(240, 240, 240, 0.153);
     border-radius: 15px;
+    max-width: 90vw !important;
 }
 
 a {

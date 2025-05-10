@@ -20,6 +20,7 @@ export default function HomePage() {
                 },
             }).then(async (data) => {
                 const response = data.data as APIResponse
+                console.log(response.payload.base64Data)
 
                 // TODO: file tamper verification code
                 const verify_response = (await axios.post("/.netlify/functions/file_verify", JSON.stringify({

@@ -42,18 +42,18 @@ exports.handler = async (event) => {
         console.log(e)
     }
     // TODO: file tamper verification code end
-    
-    const fileBuffer = Buffer.from(base64File, 'base64'); // Lambda sends body as base64
-    const blobId = uuidv4()
 
     console.log("successfully creted blob")
     
     try {
+        const fileBuffer = Buffer.from(base64File, 'base64'); // Lambda sends body as base64
+        const blobId = uuidv4()
+        
         await store.set(blobId, fileBuffer, {
             metadata: { contentType, fileName },
         });
 
-        console.log("successfully creted blob")
+        console.log("wsuccessfully creted blob")
     
         return {
             statusCode: 200,

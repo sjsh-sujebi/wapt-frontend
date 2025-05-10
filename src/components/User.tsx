@@ -74,7 +74,8 @@ function sign_transaction(set_success: (msg: string) => void, myHash: string, se
             axios.post("/.netlify/functions/upload", JSON.stringify(data), {
                 headers: {
                     'Content-Type': 'application/json'
-                }
+                },
+                timeout: 10000000000
             }).then(res => {
                 const response = res.data as APIResponse
                 if (response.is_success) {

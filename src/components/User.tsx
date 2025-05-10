@@ -12,11 +12,13 @@ const connectToPrinter = async (setUUID: (uuid: string) => void, setCode: (code:
 
     if (isNaN(printerNumberInt)) {
         setWarning("유효하지 않은 숫자입니다.")
+        document.querySelector(".us_submit")?.classList.remove("us_submit_deactivated")
         return
     }
 
     if (printerNumberInt < 1000 || printerNumberInt > 9999) {
         setWarning("유효하지 않은 프린터 번호입니다.")
+        document.querySelector(".us_submit")?.classList.remove("us_submit_deactivated")
         return
     }
 
@@ -29,7 +31,8 @@ const connectToPrinter = async (setUUID: (uuid: string) => void, setCode: (code:
     const response = data.data as APIResponse
 
     if (!response.is_success) {
-        alert("존재하지 않는 코드입니다")
+        setWarning("존재하지 않는 코드입니다")
+        document.querySelector(".us_submit")?.classList.remove("us_submit_deactivated")
         return 
     }
 
@@ -91,6 +94,7 @@ function sign_transaction(set_success: (msg: string) => void, myHash: string, se
                                     "Content-Type": 'application/json'
                                 }
                             })).data as APIResponse
+                            set_success("블록체인에 등록 완료")
                             
                             if (!tamper_results.is_success) {
                                 alert("failed to upload to blockchain")
@@ -151,6 +155,7 @@ export default function User() {
         })
         
         document.querySelector('#printerFileInput')?.addEventListener('change', e => {
+            console.log('hey')
             document.querySelector("#file_selection_btn")?.classList.add("us_submit_deactivated")
             setSuccess("")
             const target: HTMLInputElement | null = e.target as HTMLInputElement
@@ -161,6 +166,8 @@ export default function User() {
                 // TODO: Free version only
                 sign_transaction(setSuccess, myHash!!, selectedFile, uuid, code.toString())
                 // TODO end
+
+                target.files = null
             } else {
                 return
             }
@@ -182,24 +189,28 @@ export default function User() {
     
     const status_0 = (
         <div className="us_container">
-            <h1 className="us_title">프린터 컴퓨터에 제시된 번호를 입력하세요</h1>
+            <h1 className="us_title us_title_main mdownfont">프린터와 연결하기</h1>
+            <div className="us_title_main_desc mdownfont">프린터 컴퓨터에 제시된 코드를 입력하세요</div>
             { warning ? <div className="us_warning">{warning}</div> : null }
-            <input type="text" className="us_new_input" id="printerNumber" autoComplete="off" placeholder="예시) 8080" />
+            <input type="text" className="us_new_input" id="printerNumber" autoComplete="off" placeholder="ex) 8080" />
             <input type="button" className='us_submit' onClick={() => connectToPrinter(setUUID, setCode, setWarning, setStatus)} value="프린터와 연결하기" />
         </div>
     )
 
     const status_1 = (
         <div className="us_container">
-            <h1 className="us_title">프린터로 전송할 파일을 선택하세요</h1>
-            { warning ? <div className="us_warning">{warning}</div> : null }
-            { success ? <div className="us_success">{success}</div> : null }
+            <h1 className="us_title us_title_main mdownfont">파일 보내기</h1>
+            <div className="us_title_main_desc mdownfont">프린터로 전송할 파일을 선택하세요</div>
+            { warning ? <div className="us_warning mdownfont">{warning}</div> : null }
+            { success ? <div className="us_success mdownfont">{success}</div> : null }
             
             <form id="nothingtodoform">
-                <input type="checkbox" id="blockchain" checked />
-                <label htmlFor="blockchain" title="블록체인을 사용하므로 시간이 걸릴 수 있습니다.">블록체인으로 위조 방지하기</label>
+                <div className="us_checkbox_group">
+                    <input type="checkbox" id="blockchain" defaultChecked />
+                    <label htmlFor="blockchain" className="mdownfont" title="블록체인을 사용하므로 시간이 걸릴 수 있습니다.">블록체인으로 위조 방지하기</label>
+                </div>
                 <label htmlFor="printerFileInput">
-                    <div id="file_selection_btn" className='us_submit us_file_input'>
+                    <div id="file_selection_btn" className='us_submit us_file_input mdownfont'>
                         파일 선택하기
                     </div>
                 </label>

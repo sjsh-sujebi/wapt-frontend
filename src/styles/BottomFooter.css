@@ -3,7 +3,7 @@ footer {
     max-width: calc(100% - 100px);
     padding: 20px 50px;
     height: 12vh;
-    background-color: rgb(226, 226, 226);
+    background-color: rgba(0, 0, 0, 0.269);
     display: flex;
     justify-content: center;
     flex-direction: column;

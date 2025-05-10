@@ -17,10 +17,13 @@ exports.handler = async (event) => {
         })
     })
 
-    if (uuid == null) {
+    if (!uuid.exists()) {
         return {
             statusCode: 200,
-            payload: "Invalid Code"
+            body: JSON.stringify({
+                is_success: false,
+                payload: "Invalid Code"
+            })
         }
     } else {
         await remove(messageRef)

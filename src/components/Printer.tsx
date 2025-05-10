@@ -58,19 +58,19 @@ export default function HomePage() {
     
     const default_return = (
         <div className="pt_container">
-            <h1 className="pt_title">프린터 번호 : <span className="upfont pt_gray">{code}</span></h1>
+            <h1 className="pt_title mdownfont">프린터 번호 <span className="upfont">:</span> <span className="upfont pt_gray">{code}</span></h1>
 
             {
                 (() => {
                     if (downloadLinks.length == 0) {
-                        return <div className="pt_empty_links">파일을 받을 준비가 되었습니다!</div>
+                        return <div className="pt_empty_links mdownfont">다른 기기에서 파일을 보내보세요<span className="upfont">!</span></div>
                     } else {
                         (document.querySelector(".pt_title")!! as HTMLTitleElement).style.marginBottom = "30px";
                         (document.querySelector(".pt_title")!! as HTMLTitleElement).style.marginTop = "70px"
 
                         return (<>
-                            <h2 className="pt_file_list_title">파일 목록</h2>
-                            <div className="pt_download_hint mdownfont">(클릭해서 다운로드하세요)</div>
+                            <h2 className="pt_file_list_title mdownfont">파일 목록</h2>
+                            <div className="pt_download_hint mdownfont"><span className="upfont">(</span>클릭해서 다운로드하세요<span className="upfont">)</span></div>
                             <div className="pt_download_links">
                                 {downloadLinks}
                             </div>

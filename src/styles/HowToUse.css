@@ -2,15 +2,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: rgba(240, 240, 240, 0.153);
+    border-radius: 15px;
 }
 
 a {
     color: gray;
 }
 
+.htu_topic {
+    text-align: center;
+}
+
 .htu_highlight {
     font-size: larger;
-    color: red;
+    color: rgb(0, 0, 0);
 }
 
 .htu_width_image { 
@@ -18,22 +24,30 @@ a {
     height: auto !important;
 }
 
-.htu_container > div {
-    max-width: 80vw;
+.mp_explanation_topic_title {
+    text-align: center;
+    padding: 20px 0 50px 0;
 }
 
-.htu_container > * {
+.htu_container > div {
+    max-width: 80vw;
+    width: 100%;
+    padding-left: 50px;
+    padding-right: 50px;
+    text-align: left !important;
+}
+
+.htu_wrapper > * {
     margin: 20px;
 }
 
-.htu_container > h1 {
+.htu_wrapper > h1 {
     margin: 80px;
     margin-top: 80px;
 }
 
 .htu_container > h2 {
     margin: 20px;
-    background-color: rgba(240, 240, 240, 0.3);
     padding: 20px;
     border-radius: 10px;
     width: calc(80vw - 40px);
@@ -41,11 +55,21 @@ a {
 
 .htu_container > h2:hover {
     cursor: pointer;
-    background-color: rgba(240, 240, 240, 0.7) !important;
+    background-color: rgba(240, 240, 240, 0.249) !important;
 }
 
 .htu_container > img {
     border: 1px solid black;
     height: 60vh auto;
     max-width: 60vw;
+    margin-bottom: 20px;
+}
+
+.htu_wrapper > div {
+    margin-bottom: 50px
+}
+
+.htu_wrapper {
+    margin-left: 40px;
+    margin-right: 40px;
 }

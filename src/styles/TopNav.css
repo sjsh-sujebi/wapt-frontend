@@ -9,7 +9,16 @@
     align-items: center;
     min-width: 320px;
     justify-content: space-around;
-    border-bottom: 1px solid var(--nav-color);
+    background-color: rgba(8, 54, 42, 0.05);
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    z-index: 2;
+}
+
+.darknav {
+    background-color: rgb(40,44,44) !important;
+    color: white;
 }
 
 .navbar-title {
@@ -81,7 +90,8 @@
 }
 
 .navbar-menu-help:hover {
-    background-color: rgb(234, 234, 234);
+    /* background-color: rgb(234, 234, 234); */
+    background-color: rgba(255, 255, 255, 0.25);
 }
 
 .navbar-menu-register {

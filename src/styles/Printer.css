@@ -44,6 +44,14 @@
     cursor: pointer;
 }
 
+.pt_blockchain_secured {
+    background-color: rgba(132, 239, 123, 0.7) !important;
+}
+
+.pt_blockchain_secured:hover {
+    background-color: rgba(132, 239, 123, 1.0) !important;
+}
+
 .pt_empty_links {
     margin: 40px;
 }

@@ -28,9 +28,6 @@ export default function HomePage() {
                     code: code
                 }))).data as APIResponse
 
-                if (!verify_response.is_success) {
-                    alert("File Tampered!")
-                }
                 // TODO: code end
                 
                 const buffer = Buffer.from(response.payload.base64Data.split(`base64`)[1], 'base64')
@@ -39,7 +36,11 @@ export default function HomePage() {
                 const url = window.URL.createObjectURL(blob)
                 const uuid = uuidv4()
                 const a = React.createElement('a', { href: url, download: response.payload.fileName, className: 'pt_download_link', id: uuid, hidden: true }, response.payload.fileName)
-                const wrappedElement = <div className="pt_link_wrapper" onClick={() => document.getElementById(uuid)?.click()}>
+                let className = "pt_link_wrapper"
+                if (verify_response.is_success) {
+                    className = "pt_link_wrapper pt_blockchain_secured"
+                }
+                const wrappedElement = <div className={className} onClick={() => document.getElementById(uuid)?.click()}>
                     {a}{fileName}
                 </div>
                 // a.href = url

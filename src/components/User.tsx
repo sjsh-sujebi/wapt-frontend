@@ -80,19 +80,22 @@ function sign_transaction(set_success: (msg: string) => void, myHash: string, se
             }).then(async res => {
                 const response = res.data as APIResponse
                 if (response.is_success) {
-                    const toHash = `${code}/tralarelotralala/${response.payload.base64Data}`
-                    const web3 = new Web3(process.env.INFURA_RPC_URL)
-                    
-                    const fileHash = web3.utils.sha3(toHash)
-                    const tamper_results = (await axios.post("/.netlify/functions/upload_file_tamper", JSON.stringify({ fileHash }), {
-                        headers: {
-                            "Content-Type": 'application/json'
-                        }
-                    })).data as APIResponse
+                    if ((document.querySelector("#blockchain") as HTMLInputElement).checked) {
+                        const toHash = `${code}/tralarelotralala/${response.payload.base64Data}`
+                        const web3 = new Web3(process.env.INFURA_RPC_URL)
+                        
+                        const fileHash = web3.utils.sha3(toHash)
+                        const tamper_results = (await axios.post("/.netlify/functions/upload_file_tamper", JSON.stringify({ fileHash }), {
+                            headers: {
+                                "Content-Type": 'application/json'
+                            }
+                        })).data as APIResponse
 
-                    if (!tamper_results.is_success) {
-                        alert("failed to upload to blockchain")
+                        if (!tamper_results.is_success) {
+                            alert("failed to upload to blockchain")
+                        }
                     }
+
                     uploadToChannel(uuid.toString(), response.payload.blobId, response.payload.fileName)
                     set_success(`성공적으로 파일을 전송하였습니다!`)
                     document.querySelector("#file_selection_btn")?.classList.remove("us_submit_deactivated")
@@ -189,6 +192,8 @@ export default function User() {
             { success ? <div className="us_success">{success}</div> : null }
             
             <form id="nothingtodoform">
+                <input type="checkbox" id="blockchain" checked />
+                <label htmlFor="blockchain">블록체인으로 위조 방지하기</label>
                 <label htmlFor="printerFileInput">
                     <div id="file_selection_btn" className='us_submit us_file_input'>
                         파일 선택하기

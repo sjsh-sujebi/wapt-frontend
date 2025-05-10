@@ -81,18 +81,22 @@ function sign_transaction(set_success: (msg: string) => void, myHash: string, se
                 const response = res.data as APIResponse
                 if (response.is_success) {
                     if ((document.querySelector("#blockchain") as HTMLInputElement).checked) {
-                        const toHash = `${code}/tralarelotralala/${response.payload.base64Data}`
-                        const web3 = new Web3(process.env.INFURA_RPC_URL)
-                        
-                        const fileHash = web3.utils.sha3(toHash)
-                        const tamper_results = (await axios.post("/.netlify/functions/upload_file_tamper", JSON.stringify({ fileHash }), {
-                            headers: {
-                                "Content-Type": 'application/json'
+                        try {
+                            const toHash = `${code}/tralarelotralala/${response.payload.base64Data}`
+                            const web3 = new Web3(process.env.INFURA_RPC_URL)
+                            
+                            const fileHash = web3.utils.sha3(toHash)
+                            const tamper_results = (await axios.post("/.netlify/functions/upload_file_tamper", JSON.stringify({ fileHash }), {
+                                headers: {
+                                    "Content-Type": 'application/json'
+                                }
+                            })).data as APIResponse
+                            
+                            if (!tamper_results.is_success) {
+                                alert("failed to upload to blockchain")
                             }
-                        })).data as APIResponse
-
-                        if (!tamper_results.is_success) {
-                            alert("failed to upload to blockchain")
+                        } catch (e) {
+                            alert("블록체인에 등록 실패")
                         }
                     }
 

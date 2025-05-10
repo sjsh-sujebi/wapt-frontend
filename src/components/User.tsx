@@ -73,28 +73,26 @@ function sign_transaction(set_success: (msg: string) => void, myHash: string, se
             console.log(base64File)
             const data = { fileName: selectedFile.name, contentType: selectedFile.type, base64File, code }
             
-            const toHash = `${code}/tralarelotralala/${base64File}`
-            const web3 = new Web3(process.env.INFURA_RPC_URL)
-            
-            const fileHash = web3.utils.sha3(toHash)
-
-            // const tamper_results = (await axios.post("/.netlify/functions/upload_file_tamper", JSON.stringify({ fileHash }), {
-            //     headers: {
-            //         "Content-Type": 'application/json'
-            //     }
-            // })).data as APIResponse
-
-            // if (!tamper_results.is_success) {
-            //     alert("failed to upload to blockchain")
-            // }
-            
             axios.post("/.netlify/functions/upload", JSON.stringify(data), {
                 headers: {
                     'Content-Type': 'application/json'
                 }
-            }).then(res => {
+            }).then(async res => {
                 const response = res.data as APIResponse
                 if (response.is_success) {
+                    const toHash = `${code}/tralarelotralala/${response.payload.base64Data}`
+                    const web3 = new Web3(process.env.INFURA_RPC_URL)
+                    
+                    const fileHash = web3.utils.sha3(toHash)
+                    const tamper_results = (await axios.post("/.netlify/functions/upload_file_tamper", JSON.stringify({ fileHash }), {
+                        headers: {
+                            "Content-Type": 'application/json'
+                        }
+                    })).data as APIResponse
+
+                    if (!tamper_results.is_success) {
+                        alert("failed to upload to blockchain")
+                    }
                     uploadToChannel(uuid.toString(), response.payload.blobId, response.payload.fileName)
                     set_success(`성공적으로 파일을 전송하였습니다!`)
                     document.querySelector("#file_selection_btn")?.classList.remove("us_submit_deactivated")

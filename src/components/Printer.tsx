@@ -33,7 +33,7 @@ export default function HomePage() {
                 }
                 // TODO: code end
                 
-                const buffer = Buffer.from(response.payload.base64Data.split(`${response.payload.contentType}base64`)[1], 'base64')
+                const buffer = Buffer.from(response.payload.base64Data.split(`base64`)[1], 'base64')
                 const blob = new Blob([buffer], { type : response.payload.contentType })
 
                 const url = window.URL.createObjectURL(blob)

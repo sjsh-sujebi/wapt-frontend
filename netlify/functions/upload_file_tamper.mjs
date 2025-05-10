@@ -16,12 +16,14 @@ exports.handler = async (event) => {
         const contract = new web3.eth.Contract(TamperProofABI, CONTRACT_ADDRESS);
 
         const block = await web3.eth.getBlock();
+
+        const fees = await web3.eth.calculateFeeData()
         
         const tx = {
             from: wallet.address,
             to: CONTRACT_ADDRESS,
-            maxFeePerGas: block.baseFeePerGas * 2n,
-            maxPriorityFeePerGas: 1,
+            maxFeePerGas: fees.maxFeePerGas,
+            maxPriorityFeePerGas: fees.maxPriorityFeePerGas,
             data: contract.methods.uploadFileHash(fileHash).encodeABI()
         }
 

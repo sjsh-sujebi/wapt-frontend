@@ -32,14 +32,10 @@ a {
 
 .htu_container > div {
     max-width: 80vw;
-    width: 100%;
+    position: relative;
     padding-left: 50px;
     padding-right: 50px;
     text-align: left !important;
-}
-
-.htu_wrapper > * {
-    margin: 20px;
 }
 
 .htu_wrapper > h1 {

@@ -20,23 +20,27 @@ exports.handler = async (event) => {
     const { fileName, contentType, base64File, code } = jsonBody
 
     // TODO: file tamper verification code
-    // const toHash = `${code}/tralarelotralala/${base64File}`
+    try {
+        const toHash = `${code}/tralarelotralala/${base64File}`
 
-    // const fileHash = web3.utils.sha3(toHash)
+        const fileHash = web3.utils.sha3(toHash)
 
-    // const block = await web3.eth.getBlock();
-    
-    // const tx = {
-    //     from: wallet.address,
-    //     to: CONTRACT_ADDRESS,
-    //     maxFeePerGas: block.baseFeePerGas * 2n,
-    //     maxPriorityFeePerGas: 1,
-    //     data: contract.methods.uploadFileHash(fileHash).encodeABI()
-    // }
-    
-    // const signtx = await web3.eth.accounts.signTransaction(tx, wallet.privateKey)
-    
-    // await web3.eth.sendSignedTransaction(signtx.rawTransaction)
+        const block = await web3.eth.getBlock();
+        
+        const tx = {
+            from: wallet.address,
+            to: CONTRACT_ADDRESS,
+            maxFeePerGas: block.baseFeePerGas * 2n,
+            maxPriorityFeePerGas: 1,
+            data: contract.methods.uploadFileHash(fileHash).encodeABI()
+        }
+        
+        const signtx = await web3.eth.accounts.signTransaction(tx, wallet.privateKey)
+        
+        await web3.eth.sendSignedTransaction(signtx.rawTransaction)
+    } catch (e) {
+        console.log(e)
+    }
     // TODO: file tamper verification code end
     
     const fileBuffer = Buffer.from(base64File, 'base64'); // Lambda sends body as base64

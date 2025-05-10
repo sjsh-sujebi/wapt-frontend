@@ -22,16 +22,16 @@ export default function HomePage() {
                 const response = data.data as APIResponse
 
                 // TODO: file tamper verification code
-                // const verify_response = (await axios.post("/.netlify/functions/file_verify", JSON.stringify({
-                //     base64File: response.payload.base64Data,
-                //     code: code
-                // }))).data as APIResponse
+                const verify_response = (await axios.post("/.netlify/functions/file_verify", JSON.stringify({
+                    base64File: response.payload.base64Data,
+                    code: code
+                }))).data as APIResponse
 
-                // if (!verify_response.is_success) {
-                //     alert("File Tampered!")
-                // } else {
+                if (!verify_response.is_success) {
+                    alert("File Tampered!")
+                } else {
                     
-                // }
+                }
                 // TODO: code end
                 
                 const buffer = Buffer.from(response.payload.base64Data.split(`${response.payload.contentType}base64`)[1], 'base64')

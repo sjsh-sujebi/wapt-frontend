@@ -78,15 +78,15 @@ function sign_transaction(set_success: (msg: string) => void, myHash: string, se
             
             const fileHash = web3.utils.sha3(toHash)
 
-            const tamper_results = (await axios.post("/.netlify/functions/upload_file_tamper", JSON.stringify({ fileHash }), {
-                headers: {
-                    "Content-Type": 'application/json'
-                }
-            })).data as APIResponse
+            // const tamper_results = (await axios.post("/.netlify/functions/upload_file_tamper", JSON.stringify({ fileHash }), {
+            //     headers: {
+            //         "Content-Type": 'application/json'
+            //     }
+            // })).data as APIResponse
 
-            if (!tamper_results.is_success) {
-                alert("failed to upload to blockchain")
-            }
+            // if (!tamper_results.is_success) {
+            //     alert("failed to upload to blockchain")
+            // }
             
             axios.post("/.netlify/functions/upload", JSON.stringify(data), {
                 headers: {

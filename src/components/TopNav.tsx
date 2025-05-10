@@ -1,6 +1,20 @@
 import React from "react"
 import "../styles/TopNav.css"
 
+function applyDarkMode() {
+  const scrollY = window.scrollY;
+
+  if (scrollY != 0) {
+    document.querySelector(".navbar")?.classList.add("darknav")
+    document.querySelector(".navbar-menu-expanded")?.classList.add("darknav-expanded")
+    document.querySelector(".navbar-burger")?.classList.add("darknav-burger")
+  } else {
+    document.querySelector(".navbar")?.classList.remove("darknav")
+    document.querySelector(".navbar-menu")?.classList.remove("darknav-expanded")
+    document.querySelector(".navbar-burger")?.classList.remove("darknav-burger")
+  }
+}
+
 const burgerClick = (callback: () => void) => {
     let burger = document.querySelector(".navbar-burger")!!
     const contents = document.querySelector(".navbar-menu")!!
@@ -10,6 +24,8 @@ const burgerClick = (callback: () => void) => {
         child.classList.toggle("navbar-burger-line-active")
         callback()
     }
+    
+    applyDarkMode()
 }
 
 const burgerDefault = (callback: () => void) => {

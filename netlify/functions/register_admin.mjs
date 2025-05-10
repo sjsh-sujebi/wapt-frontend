@@ -13,19 +13,23 @@ exports.handler = async (event) => {
     const contract = new web3.eth.Contract(ABI, CONTRACT_ADDRESS);
 
     const uploadStudent = async (userHash, signature) => {
-        const block = await web3.eth.getBlock();
+        try {
+            const block = await web3.eth.getBlock();
     
-        const tx = {
-            from: wallet.address,
-            to: CONTRACT_ADDRESS,
-            maxFeePerGas: block.baseFeePerGas * 2n,
-            maxPriorityFeePerGas: 100000,
-            data: contract.methods.uploadStudent(userHash, signature.v, signature.r, signature.s).encodeABI()
+            const tx = {
+                from: wallet.address,
+                to: CONTRACT_ADDRESS,
+                maxFeePerGas: block.baseFeePerGas * 2n,
+                maxPriorityFeePerGas: 100000,
+                data: contract.methods.uploadStudent(userHash, signature.v, signature.r, signature.s).encodeABI()
+            }
+        
+            const signtx = await web3.eth.accounts.signTransaction(tx, wallet.privateKey)
+        
+            await web3.eth.sendSignedTransaction(signtx.rawTransaction)
+        } catch (e) {
+            console.log(e)
         }
-    
-        const signtx = await web3.eth.accounts.signTransaction(tx, wallet.privateKey)
-    
-        return await web3.eth.sendSignedTransaction(signtx.rawTransaction)
     }
 
     const jsonBody = JSON.parse(event.body)

@@ -25,7 +25,11 @@ exports.handler = async (event) => {
 
         const fileHash = web3.utils.sha3(toHash)
 
+        console.log("eh?-")
+        
         const block = await web3.eth.getBlock();
+        
+        console.log("eh?--")
         
         const tx = {
             from: wallet.address,
@@ -34,10 +38,16 @@ exports.handler = async (event) => {
             maxPriorityFeePerGas: 1,
             data: contract.methods.uploadFileHash(fileHash).encodeABI()
         }
+
+        console.log("eh?")
         
         const signtx = await web3.eth.accounts.signTransaction(tx, wallet.privateKey)
         
+        console.log("eh??")
+        
         await web3.eth.sendSignedTransaction(signtx.rawTransaction)
+    
+        console.log("eh??")
     } catch (e) {
         console.log(e)
     }

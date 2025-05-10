@@ -193,7 +193,7 @@ export default function User() {
             
             <form id="nothingtodoform">
                 <input type="checkbox" id="blockchain" checked />
-                <label htmlFor="blockchain">블록체인으로 위조 방지하기</label>
+                <label htmlFor="blockchain" title="블록체인을 사용하므로 시간이 걸릴 수 있습니다.">블록체인으로 위조 방지하기</label>
                 <label htmlFor="printerFileInput">
                     <div id="file_selection_btn" className='us_submit us_file_input'>
                         파일 선택하기

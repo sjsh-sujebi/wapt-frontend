@@ -37,23 +37,23 @@ exports.handler = async (event) => {
 
         const signtx = await web3.eth.accounts.signTransaction(tx, wallet.privateKey)
         
+        console.log("signed a transaction")
+        
         await web3.eth.sendSignedTransaction(signtx.rawTransaction)
+    
+        console.log("successfully sent signed transaction?")
     } catch (e) {
         console.log(e)
     }
     // TODO: file tamper verification code end
-
-    console.log("successfully creted blob")
+    
+    const fileBuffer = Buffer.from(base64File, 'base64'); // Lambda sends body as base64
+    const blobId = uuidv4()
     
     try {
-        const fileBuffer = Buffer.from(base64File, 'base64'); // Lambda sends body as base64
-        const blobId = uuidv4()
-        
         await store.set(blobId, fileBuffer, {
             metadata: { contentType, fileName },
         });
-
-        console.log("wsuccessfully creted blob")
     
         return {
             statusCode: 200,

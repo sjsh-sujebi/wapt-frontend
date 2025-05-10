@@ -30,8 +30,6 @@ export default function HomePage() {
 
                 if (!verify_response.is_success) {
                     alert("File Tampered!")
-                } else {
-                    
                 }
                 // TODO: code end
                 

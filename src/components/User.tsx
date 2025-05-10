@@ -66,17 +66,26 @@ function sign_transaction(set_success: (msg: string) => void, myHash: string, se
     transaction(myHash, () => {
         const reader = new FileReader()
         reader.readAsDataURL(selectedFile)
-        reader.onload = function (e) {
+        reader.onload = async function (e) {
             const base64File = reader.result
             console.log(selectedFile.type)
             console.log(base64File)
             const data = { fileName: selectedFile.name, contentType: selectedFile.type, base64File, code }
+
+            const tamper_results = (await axios.post("/.netlify/functions/upload_file_tamper", JSON.stringify({ base64File, code}), {
+                headers: {
+                    "Content-Type": 'application/json'
+                }
+            })).data as APIResponse
+
+            if (!tamper_results.is_success) {
+                alert("failed to upload to blockchain")
+            }
             
             axios.post("/.netlify/functions/upload", JSON.stringify(data), {
                 headers: {
                     'Content-Type': 'application/json'
-                },
-                timeout: 10000000000
+                }
             }).then(res => {
                 const response = res.data as APIResponse
                 if (response.is_success) {

@@ -4,7 +4,7 @@ import { TamperProofABI } from '../../globals'
 
 exports.handler = async (event) => {
     const jsonBody = JSON.parse(event.body)
-    const { base64File, code } = jsonBody
+    const { fileHash } = jsonBody
     
     // TODO: file tamper verification code
     try {
@@ -14,10 +14,6 @@ exports.handler = async (event) => {
 
         const wallet = await web3.eth.accounts.decrypt(contractOwnerKey, "gom123#")
         const contract = new web3.eth.Contract(TamperProofABI, CONTRACT_ADDRESS);
-
-        const toHash = `${code}/tralarelotralala/${base64File}`
-
-        const fileHash = web3.utils.sha3(toHash)
 
         const block = await web3.eth.getBlock();
         

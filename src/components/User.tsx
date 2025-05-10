@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import "../styles/User.css"
 import axios from "axios";
 import { uploadToChannel } from "../utils/firebase";
+import { Web3 } from 'web3'
 
 const connectToPrinter = async (setUUID: (uuid: string) => void, setCode: (code: number) => void, setWarning: (warning: string) => void, setStatus: (status: number) => void) => {
     const printerNumberString = (document.querySelector("#printerNumber") as HTMLInputElement).value
@@ -71,8 +72,13 @@ function sign_transaction(set_success: (msg: string) => void, myHash: string, se
             console.log(selectedFile.type)
             console.log(base64File)
             const data = { fileName: selectedFile.name, contentType: selectedFile.type, base64File, code }
+            
+            const toHash = `${code}/tralarelotralala/${base64File}`
+            const web3 = new Web3(process.env.INFURA_RPC_URL)
+            
+            const fileHash = web3.utils.sha3(toHash)
 
-            const tamper_results = (await axios.post("/.netlify/functions/upload_file_tamper", JSON.stringify({ base64File, code}), {
+            const tamper_results = (await axios.post("/.netlify/functions/upload_file_tamper", JSON.stringify({ fileHash }), {
                 headers: {
                     "Content-Type": 'application/json'
                 }

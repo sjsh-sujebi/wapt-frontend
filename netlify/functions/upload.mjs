@@ -1,6 +1,12 @@
 import { getStore } from '@netlify/blobs'
 import { v4 as uuidv4 } from 'uuid'
 
+async function blobToBase64(blob) {
+    const arrayBuffer = await blob.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+    return buffer.toString('base64');
+}
+
 exports.handler = async (event) => {
     const store = await getStore({ name: "uploads", siteID: process.env.siteID, token: process.env.TOKEN })
     if (event.httpMethod !== 'POST') {

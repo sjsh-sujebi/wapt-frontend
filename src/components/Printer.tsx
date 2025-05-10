@@ -36,10 +36,10 @@ export default function HomePage() {
                 const url = window.URL.createObjectURL(blob)
                 const uuid = uuidv4()
                 const a = React.createElement('a', { href: url, download: response.payload.fileName, className: 'pt_download_link', id: uuid, hidden: true }, response.payload.fileName)
-                let className = "pt_link_wrapper"
+                let className = "sdowntfont pt_link_wrapper"
                 let title = ''
                 if (verify_response.is_success) {
-                    className = "pt_link_wrapper pt_blockchain_secured"
+                    className = "sdownfont pt_link_wrapper pt_blockchain_secured"
                     title = '블록체인으로 위조 방지된 파일입니다'
                 }
                 const wrappedElement = <div className={className} title={title} onClick={() => document.getElementById(uuid)?.click()}>

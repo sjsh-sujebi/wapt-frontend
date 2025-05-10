@@ -132,16 +132,16 @@ export default function User() {
         }
     }, [currentTokens, selectedFile])
 
-    useEffect(() => {
-        axios.post("/.netlify/functions/get_token_balance", JSON.stringify({ userHash: myHash }), {
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).then(data => {
-            const response = data.data as APIResponse
-            setCurrentTokens(parseInt(response.payload.numTokens))
-        })
-    }, []);
+    // useEffect(() => {
+    //     axios.post("/.netlify/functions/get_token_balance", JSON.stringify({ userHash: myHash }), {
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         }
+    //     }).then(data => {
+    //         const response = data.data as APIResponse
+    //         setCurrentTokens(parseInt(response.payload.numTokens))
+    //     })
+    // }, []);
 
     useEffect(() => {
         document.querySelector(".us_file_send_popup_background")?.addEventListener("click", e => {

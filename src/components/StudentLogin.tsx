@@ -29,7 +29,6 @@ function clickListener(target: HTMLButtonElement, setWarning: (msg: string) => v
             'Content-Type': 'application/json'
         }
     }).then(res => {
-        console.log(res)
         const response = res.data as APIResponse
         if (response.is_success) {
             window.localStorage.setItem("studentHash", response.payload.userHash)

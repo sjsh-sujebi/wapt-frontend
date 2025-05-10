@@ -3,6 +3,16 @@ import TopNav from "./components/TopNav";
 import BottomFooter from "./components/BottomFooter";
 
 function App({child}: {child: JSX.Element}) {
+  window.addEventListener("hashchange", e => {
+    if (window.location.hash.startsWith("#") && window.location.hash != "#") {
+      window.location.href = window.location.hash
+      window.scrollBy({
+        top: -120,
+        behavior: 'smooth'
+      })
+    }
+  })
+
   const hash = localStorage.getItem("studentHash")
 
   window.addEventListener('scroll', () => {
@@ -10,8 +20,12 @@ function App({child}: {child: JSX.Element}) {
 
     if (scrollY != 0) {
       document.querySelector(".navbar")?.classList.add("darknav")
+      document.querySelector(".navbar-menu-expanded")?.classList.add("darknav-expanded")
+      document.querySelector(".navbar-burger")?.classList.add("darknav-burger")
     } else {
       document.querySelector(".navbar")?.classList.remove("darknav")
+      document.querySelector(".navbar-menu")?.classList.remove("darknav-expanded")
+      document.querySelector(".navbar-burger")?.classList.remove("darknav-burger")
     }
   });
 

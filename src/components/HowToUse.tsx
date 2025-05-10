@@ -3,6 +3,10 @@ import "../styles/HowToUse.css"
 
 function clip(tag: string) {
     window.location.href = `#${tag}`
+    window.scrollBy({
+        top: -120,
+        behavior: 'smooth'
+    })
 }
 
 export default function HowToUse() {

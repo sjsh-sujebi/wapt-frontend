@@ -21,6 +21,14 @@
     color: white;
 }
 
+.darknav-expanded {
+    background-color: rgb(40,44,44) !important;
+}
+
+.darknav-expanded > *:hover {
+    background-color: rgb(42, 50, 50) !important;
+}
+
 .navbar-title {
     cursor: pointer;
     z-index: 5;
@@ -41,6 +49,10 @@
     margin: 4px;
     border-radius: 10px;
     background: #0e2431;
+}
+
+.darknav-burger > .navbar-burger-line {
+    background: white;
 }
 
 .navbar-burger-line-active:first-child {

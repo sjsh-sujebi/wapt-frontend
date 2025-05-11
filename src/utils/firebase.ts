@@ -33,10 +33,15 @@ export const openChannel = (code: string, uuid: string, callback: (blobId: strin
     let shutdown = false
 
     onValue(uuidRef, (snapshot) => {
+        if (shutdown) {
+            return
+        }
+        
         const data = snapshot.val()
         console.log(data.toString() != uuid)
         if (data.toString() != uuid) {
             shutdown = true
+            codeGiveUp()
         }
     })
 

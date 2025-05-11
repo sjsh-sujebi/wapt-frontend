@@ -35,6 +35,7 @@ a {
     position: relative;
     padding-left: 50px;
     padding-right: 50px;
+    width: calc(80vw - 100px);
     text-align: left !important;
 }
 

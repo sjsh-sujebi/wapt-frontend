@@ -25,7 +25,7 @@ export const createRandomCode = () => {
     return digits
 }
 
-export const openChannel = (code: string, uuid: string, callback: (blobId: string, fileName: string) => void, codeGiveUp: () => number) => {
+export const openChannel = (code: string, uuid: string, callback: (blobId: string, fileName: string) => void, codeGiveUp: () => void) => {
     const messageRef = ref(db, `/codes/${uuid}/`)
     const uuidRef = ref(db, `/uuids/${code}`)
     set(uuidRef, uuid)
@@ -37,8 +37,6 @@ export const openChannel = (code: string, uuid: string, callback: (blobId: strin
         console.log(data.toString() != uuid)
         if (data.toString() != uuid) {
             shutdown = true
-            const newCode = codeGiveUp().toString()
-            openChannel(newCode, uuid, callback, codeGiveUp)
         }
     })
 

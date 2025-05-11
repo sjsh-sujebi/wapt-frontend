@@ -215,7 +215,7 @@ export default function User() {
             
             <form id="nothingtodoform">
                 <div className="us_checkbox_group">
-                    <input type="checkbox" id="blockchain" defaultChecked />
+                    <input type="checkbox" id="blockchain" />
                     <label htmlFor="blockchain" className="mdownfont" title="블록체인을 사용하므로 시간이 걸릴 수 있습니다.">블록체인으로 위조 방지하기</label>
                 </div>
                 <label htmlFor="printerFileInput">

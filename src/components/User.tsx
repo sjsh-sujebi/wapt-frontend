@@ -178,6 +178,18 @@ export default function User() {
         document.querySelector("#nothingtodoform")?.addEventListener("submit", e => e.preventDefault())
     }, [status])
 
+    useEffect(() => {
+        document.querySelector("#printerNumber")?.addEventListener("keyup", e => {
+            const event = (e as KeyboardEvent);
+
+            let key = event.key || event.keyCode;
+    
+            if (key === 'Enter' || key === 13) {
+                connectToPrinter(setUUID, setCode, setWarning, setStatus)
+            }
+        })
+    }, [])
+    
     if (!myHash) {
         alert("로그인이 필요한 서비스입니다!")
         window.location.href = "/login"

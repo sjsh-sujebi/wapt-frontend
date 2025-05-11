@@ -90,7 +90,7 @@ export default function MainPage() {
                         <h3 className="mdownfont">비둘기에게 밥을 나누어 주시는 것은 어떤가요<span className="upfont">?</span></h3>
                         <br />
                         <a href="https://www.buymeacoffee.com/dolphin2410" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-blue.png" alt="Buy Me A Coffee" style={{height: '40px', width: '150px'}} /></a>
-                        <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="dolphin2410" data-color="#5F7FFF" data-emoji="" data-font="Arial" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#FFDD00" ></script>
+                        <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="dolphin2410" data-color="#5F7FFF" data-emoji="" data-font="Arial" data-text="Feed Pigeon" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#FFDD00" ></script>
                     </div>
                     <br />
                     <br />

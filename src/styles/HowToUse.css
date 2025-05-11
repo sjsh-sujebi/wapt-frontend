@@ -36,7 +36,7 @@ a {
     padding-left: 50px;
     padding-right: 50px;
     width: calc(80vw - 100px);
-    text-align: left !important;
+    text-align: left;
 }
 
 .htu_wrapper > h1 {
@@ -57,9 +57,8 @@ a {
 }
 
 .htu_container > img {
-    border: 1px solid black;
     height: 60vh auto;
-    max-width: 60vw;
+    max-width: 80vw;
     margin-bottom: 20px;
 }
 

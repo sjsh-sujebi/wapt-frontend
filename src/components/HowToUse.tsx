@@ -12,7 +12,7 @@ function clip(tag: string) {
 export default function HowToUse() {
     return (
         <div className="htu_wrapper">
-            <h1 className="htu_topic"><span className="upfont">WFT</span> <span className="mdownfont">사용 매뉴얼</span></h1>
+            <h1 className="htu_topic"><span className="upfont">Pigeon</span> <span className="mdownfont">사용 매뉴얼</span></h1>
             <div className="htu_container">
                 <h2 id="filetransfer1" onClick={() => clip("filetransfer1")}># 파일 주고 받기 <span className="upfont">1</span></h2>
                 <img src="/5.png" alt="" />

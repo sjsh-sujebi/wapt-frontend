@@ -12,12 +12,16 @@ html {
   height: 100%;
 }
 
+.textAlignCenter {
+  text-align: center !important;
+}
+
 body {
   width: 100%;
   height: 100%;
   /* background: linear-gradient(22deg, #5eb7ff9a, #c1b5f4); */
   /* background: linear-gradient(10deg, #09ba9175, #71b7b7a0, #346e6e38); */
-  background: linear-gradient(10deg, #426aac75, #6364c2a0, #2a286c38);
+  background: linear-gradient(10deg, #426bac4b, #6365c269, #2a286c71);
   background-attachment: fixed;
 }
 

@@ -52,6 +52,7 @@
     width: 500px;
     margin-bottom: 30px;
     justify-content: center;
+    max-width: calc(80vw - 60px);
 }
 
 .us_file_send_popup_background {
@@ -88,8 +89,8 @@ label {
     padding: 10px 30px;
     align-items: center;
     margin-bottom: 50px;
-    width: calc(80vw - 20px);
-    max-width: 380px;
+    width: 500px;
+    max-width: calc(80vw - 20px);
     justify-content: center;
 }
 

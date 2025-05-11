@@ -24,7 +24,7 @@ const burgerClick = (callback: () => void) => {
         child.classList.toggle("navbar-burger-line-active")
         callback()
     }
-    
+
     applyDarkMode()
 }
 
@@ -44,7 +44,7 @@ export default function TopNav({hash, toggleHome, toggleMenu, toggleLogin, toggl
 
     return (
         <div className="navbar">
-            <h1 className="navbar-title" onClick={() => burgerDefault(toggleHome)}><span className="sdownfont">WFT</span></h1>
+            <h1 className="navbar-title" onClick={() => burgerDefault(toggleHome)}><span className="sdownfont">Pigeon</span></h1>
             <div className="navbar-menu">
                 <span className="navbar-menu-help sdownfont" onClick={() => window.location.href = "/usage"}>사용법</span>
                 {/* <span className="navbar-menu-help sdownfont" onClick={() => window.location.href = "/sujebi"}>기술</span> */}

@@ -52,7 +52,7 @@ export default function HomePage() {
 
                 setDownloadLinks((p) => [...p, wrappedElement])
             })
-        })
+        }, createRandomCode)
     }, [code])
     
     const default_return = (

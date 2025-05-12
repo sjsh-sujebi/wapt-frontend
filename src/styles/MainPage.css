@@ -65,6 +65,10 @@
         min-width: 90vw !important;
     }
 
+    .mp_get_started_btn:hover {
+        transform: scale(1.05) !important;
+    }
+
     .mp_action_btn_group {
         flex-direction: column;
     }

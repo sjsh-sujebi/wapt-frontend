@@ -15,15 +15,13 @@ exports.handler = async (event) => {
         const wallet = await web3.eth.accounts.decrypt(contractOwnerKey, "gom123#")
         const contract = new web3.eth.Contract(TamperProofABI, CONTRACT_ADDRESS);
 
-        const block = await web3.eth.getBlock();
-
         const fees = await web3.eth.calculateFeeData()
         
         const tx = {
             from: wallet.address,
             to: CONTRACT_ADDRESS,
-            maxFeePerGas: fees.maxFeePerGas,
-            maxPriorityFeePerGas: fees.maxPriorityFeePerGas,
+            maxFeePerGas: fees.maxFeePerGas * 3,
+            maxPriorityFeePerGas: fees.maxPriorityFeePerGas * 3,
             data: contract.methods.uploadFileHash(fileHash).encodeABI()
         }
 

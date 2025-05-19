@@ -87,7 +87,8 @@ function sign_transaction(set_success: (msg: string) => void, myHash: string, se
                             const web3 = new Web3(process.env.INFURA_RPC_URL)
                             
                             const fileHash = web3.utils.sha3(toHash)
-                            const tamper_results = (await axios.post("/.netlify/functions/upload_file_tamper", JSON.stringify({ fileHash }), {
+                            const tamper_results = (await axios.post("https://trusted-fern-quince.glitch.me/upload_file_tamper", JSON.stringify({ fileHash }), {
+                            // const tamper_results = (await axios.post("/.netlify/functions/upload_file_tamper", JSON.stringify({ fileHash }), {
                                 headers: {
                                     "Content-Type": 'application/json'
                                 }

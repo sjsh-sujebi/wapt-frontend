@@ -36,8 +36,13 @@ export const openChannel = (code: string, uuid: string, callback: (blobId: strin
         if (shutdown) {
             return
         }
-        
+
         const data = snapshot.val()
+
+        if (data == null) {
+            return
+        }
+        
         console.log(data.toString() != uuid)
         if (data.toString() != uuid) {
             shutdown = true

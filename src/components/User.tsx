@@ -111,6 +111,8 @@ function sign_transaction(set_success: (msg: string) => void, myHash: string, se
                 } else {
                     alert("BlobUploadError: 오류가 발생했습니다. 개발자에게 문의해주세요.")
                 }
+            }).catch(e => {
+                alert("파일이 너무 큰 건 아닌가요?")
             })
         }
     })
@@ -167,6 +169,7 @@ export default function User() {
 
                 target.files = null
             } else {
+                document.querySelector("#file_selection_btn")?.classList.remove("us_submit_deactivated")
                 return
             }
             

@@ -21,7 +21,8 @@ body {
   height: 100%;
   /* background: linear-gradient(22deg, #5eb7ff9a, #c1b5f4); */
   /* background: linear-gradient(10deg, #09ba9175, #71b7b7a0, #346e6e38); */
-  background: linear-gradient(10deg, #426bac4b, #6365c269, #2a286c71);
+  background: linear-gradient(10deg, #0205091f, #0f0f223a, #0201121b);
+  /* background: linear-gradient(10deg, #426bac4b, #6365c269, #2a286c71); */
   background-attachment: fixed;
 }
 
@@ -51,6 +52,10 @@ body {
 
 .downfont {
   font-weight: 200;
+}
+
+.supfont {
+  font-weight: 500;
 }
 
 .upfont {

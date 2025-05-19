@@ -21,11 +21,20 @@ export default function HomePage() {
             }).then(async (data) => {
                 const response = data.data as APIResponse
 
+                let verify_response = {
+                    is_success: false,
+                    payload: "Fake payload"
+                }
+
+                if ((document.querySelector("#blockchain") as HTMLInputElement).checked) {
+                    verify_response = (await axios.post("/.netlify/functions/file_verify", JSON.stringify({
+                        base64File: response.payload.base64Data,
+                        code: code
+                    }))).data as APIResponse
+                }
+
                 // TODO: file tamper verification code
-                const verify_response = (await axios.post("/.netlify/functions/file_verify", JSON.stringify({
-                    base64File: response.payload.base64Data,
-                    code: code
-                }))).data as APIResponse
+                
 
                 // TODO: code end
                 
@@ -61,7 +70,10 @@ export default function HomePage() {
     const default_return = (
         <div className="pt_container">
             <h1 className="pt_title mdownfont">프린터 번호 <span className="upfont">:</span> <span className="upfont pt_gray">{code}</span></h1>
-
+                <div className="us_checkbox_group">
+                    <input type="checkbox" id="blockchain" />
+                    <label htmlFor="blockchain" className="mdownfont" title="블록체인을 사용하므로 시간이 걸릴 수 있습니다.">블록체인 위조 방지 검사하기</label>
+                </div>
             {
                 (() => {
                     if (downloadLinks.length == 0) {

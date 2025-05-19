@@ -25,7 +25,7 @@ export const createRandomCode = () => {
     return digits
 }
 
-export const openChannel = (code: string, uuid: string, callback: (blobId: string, fileName: string) => void, codeGiveUp: () => void) => {
+export const openChannel = (code: string, uuid: string, callback: (blobIds: string[], fileName: string) => void, codeGiveUp: () => void) => {
     const messageRef = ref(db, `/codes/${uuid}/`)
     const uuidRef = ref(db, `/uuids/${code}`)
     set(uuidRef, uuid)
@@ -42,13 +42,15 @@ export const openChannel = (code: string, uuid: string, callback: (blobId: strin
         if (data == null) {
             return
         }
-        
+
         console.log(data.toString() != uuid)
         if (data.toString() != uuid) {
             shutdown = true
             codeGiveUp()
         }
     })
+
+    let blobIds = []
 
     onValue(messageRef, (snapshot) => {
         if (shutdown) {
@@ -59,11 +61,13 @@ export const openChannel = (code: string, uuid: string, callback: (blobId: strin
             return
         }
         const [blobId, fileName] = data.split("/")
-        callback(blobId, fileName)
+
+        callback(blobId.split("+"), fileName)
     })
 }
 
-export const uploadToChannel = (uuid: string, blobId: string, fileName: string) => {
+export const uploadToChannel = (uuid: string, blobIds: string[], fileName: string) => {
     const messageRef = ref(db, `/codes/${uuid}/`)
-    set(messageRef, `${blobId}/${fileName}`)
+
+    set(messageRef, `${blobIds.join("+")}/${fileName}`)
 }

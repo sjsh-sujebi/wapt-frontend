@@ -65,6 +65,17 @@ function transaction(userHash: string, callback: () => void) {
     // TODO end
 }
 
+function splitFixedLength(str: string, length: number) {
+  if (!str || length <= 0) {
+    return [];
+  }
+  const result = [];
+  for (let i = 0; i < str.length; i += length) {
+    result.push(str.slice(i, i + length));
+  }
+  return result;
+}
+
 function sign_transaction(set_success: (msg: string) => void, myHash: string, selectedFile: File, uuid: string, code: string) {
     document.querySelector("#verify_payment")?.classList.add("us_submit_deactivated")
     transaction(myHash, () => {
@@ -72,49 +83,61 @@ function sign_transaction(set_success: (msg: string) => void, myHash: string, se
         reader.readAsDataURL(selectedFile)
         reader.onload = async function (e) {
             const base64File = reader.result
-            const data = { fileName: selectedFile.name, contentType: selectedFile.type, base64File, code }
-            
-            axios.post("/.netlify/functions/upload", JSON.stringify(data), {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(async res => {
-                const response = res.data as APIResponse
-                if (response.is_success) {
-                    if ((document.querySelector("#blockchain") as HTMLInputElement).checked) {
-                        try {
-                            const toHash = `${code}/tralarelotralala/${response.payload.base64Data}`
-                            const web3 = new Web3(process.env.INFURA_RPC_URL)
-                            
-                            const fileHash = web3.utils.sha3(toHash)
-                            const tamper_results = (await axios.post("https://trusted-fern-quince.glitch.me/upload_file_tamper", JSON.stringify({ fileHash }), {
-                            // const tamper_results = (await axios.post("/.netlify/functions/upload_file_tamper", JSON.stringify({ fileHash }), {
-                                headers: {
-                                    "Content-Type": 'application/json'
-                                }
-                            })).data as APIResponse
-                            set_success("블록체인에 등록 완료")
-                            
-                            if (!tamper_results.is_success) {
-                                alert("failed to upload to blockchain")
-                            }
-                        } catch (e) {
-                            alert("블록체인에 등록 실패")
-                        }
-                    }
+            // console.log(splitted[0])
+            // console.log(splitted[1])
+            const chunks = splitFixedLength(base64File!!.toString(), 5 * 1024 * 1024); // 5 * 1024 * 1024
 
-                    uploadToChannel(uuid.toString(), response.payload.blobId, response.payload.fileName)
-                    set_success(`성공적으로 파일을 전송하였습니다!`)
+            let slices = []
+
+            for (const chunk in chunks) {
+                const data = { fileName: selectedFile.name, contentType: selectedFile.type, base64File: chunks[chunk], code }
+            
+                await axios.post("/.netlify/functions/upload", JSON.stringify(data), {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(async res => {
+                    const response = res.data as APIResponse
+                    if (response.is_success) {
+                        if ((document.querySelector("#blockchain") as HTMLInputElement).checked) {
+                            try {
+                                const toHash = `${code}/tralarelotralala/${response.payload.base64Data}`
+                                const web3 = new Web3(process.env.INFURA_RPC_URL)
+                                
+                                const fileHash = web3.utils.sha3(toHash)
+                                const tamper_results = (await axios.post("https://trusted-fern-quince.glitch.me/upload_file_tamper", JSON.stringify({ fileHash }), {
+                                // const tamper_results = (await axios.post("/.netlify/functions/upload_file_tamper", JSON.stringify({ fileHash }), {
+                                    headers: {
+                                        "Content-Type": 'application/json'
+                                    }
+                                })).data as APIResponse
+                                set_success(`블록체인에 조각 등록 완료 ${parseInt(chunk) + 1}/${chunks.length}`)
+                                
+                                if (!tamper_results.is_success) {
+                                    alert("failed to upload to blockchain")
+                                }
+                            } catch (e) {
+                                alert("블록체인에 등록 실패")
+                            }
+                        }
+
+                        slices.push(response.payload.blobId)
+                        
+                        if (parseInt(chunk) == chunks.length - 1) {
+                            uploadToChannel(uuid.toString(), slices, response.payload.fileName)
+                            set_success(`성공적으로 파일을 전송하였습니다!`)
+                            document.querySelector("#file_selection_btn")?.classList.remove("us_submit_deactivated")
+                            document.querySelector(".us_file_send_popup")?.classList.add("us_no_display")
+                            document.querySelector(".us_file_send_popup_background")?.classList.add("us_no_display")
+                        }
+                    } else {
+                        alert("BlobUploadError: 오류가 발생했습니다. 개발자에게 문의해주세요.")
+                    }
+                }).catch(e => {
                     document.querySelector("#file_selection_btn")?.classList.remove("us_submit_deactivated")
-                    document.querySelector(".us_file_send_popup")?.classList.add("us_no_display")
-                    document.querySelector(".us_file_send_popup_background")?.classList.add("us_no_display")
-                } else {
-                    alert("BlobUploadError: 오류가 발생했습니다. 개발자에게 문의해주세요.")
-                }
-            }).catch(e => {
-                document.querySelector("#file_selection_btn")?.classList.remove("us_submit_deactivated")
-                alert("실패! 파일이 너무 큰 건 아닌가요?")
-            })
+                    alert("파일이 너무 큰 건 아닌가요? 최대 6MB까지 업로드 가능합니다!")
+                })   
+            }
         }
     })
 }

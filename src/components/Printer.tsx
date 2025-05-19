@@ -12,13 +12,20 @@ export default function HomePage() {
     const [downloadLinks, setDownloadLinks] = useState<ReactElement[]>([])
 
     useEffect(() => {
-        openChannel(code, myUUID, (blobId, fileName) => {
+        openChannel(code, myUUID, async (blobIds, _fileName) => {
             setStatus(1)
-            axios.post("/.netlify/functions/download", JSON.stringify({ blobId, fileName, uuid: myUUID }), {
-                headers: {
-                    "Content-Type": "application/json"
-                },
-            }).then(async (data) => {
+            let isBlockchainValidated = true
+            let contentType = ""
+            let fileName = ""
+            let mainBuffer = ""
+
+            for (const blobId of blobIds) {
+                const data = await axios.post("/.netlify/functions/download", JSON.stringify({ blobId, fileName, uuid: myUUID }), {
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                })
+                
                 const response = data.data as APIResponse
 
                 let verify_response = {
@@ -33,34 +40,39 @@ export default function HomePage() {
                     }))).data as APIResponse
                 }
 
+                isBlockchainValidated = isBlockchainValidated && verify_response.is_success
+                contentType = response.payload.contentType
+                fileName = response.payload.fileName
+
                 // TODO: file tamper verification code
-                
+                    
 
                 // TODO: code end
-                
-                const buffer = Buffer.from(response.payload.base64Data.split(`base64`)[1], 'base64')
-                const blob = new Blob([buffer], { type : response.payload.contentType })
 
-                const url = window.URL.createObjectURL(blob)
-                const uuid = uuidv4()
-                const a = React.createElement('a', { href: url, download: response.payload.fileName, className: 'pt_download_link', id: uuid, hidden: true }, response.payload.fileName)
-                let className = "sdowntfont pt_link_wrapper"
-                let title = ''
-                if (verify_response.is_success) {
-                    className = "sdownfont pt_link_wrapper pt_blockchain_secured"
-                    title = '블록체인으로 위조 방지된 파일입니다'
-                }
-                const wrappedElement = <div className={className} title={title} onClick={() => document.getElementById(uuid)?.click()}>
-                    {a}{fileName}
-                </div>
-                // a.href = url
-                // a.download = parsedData.fileName
-                // a.click()
-                // a.remove()
-                // window.URL.revokeObjectURL(url);
+                mainBuffer += response.payload.base64Data
+            }
 
-                setDownloadLinks((p) => [...p, wrappedElement])
-            })
+            const blob = new Blob([Buffer.from(mainBuffer.split("base64,")[1], 'base64')], { type : contentType })
+
+            const url = window.URL.createObjectURL(blob)
+            const uuid = uuidv4()
+            const a = React.createElement('a', { href: url, download: fileName, className: 'pt_download_link', id: uuid, hidden: true }, fileName)
+            let className = "sdowntfont pt_link_wrapper"
+            let title = ''
+            if (isBlockchainValidated) {
+                className = "sdownfont pt_link_wrapper pt_blockchain_secured"
+                title = '블록체인으로 위조 방지된 파일입니다'
+            }
+            const wrappedElement = <div className={className} title={title} onClick={() => document.getElementById(uuid)?.click()}>
+                {a}{fileName}
+            </div>
+            // a.href = url
+            // a.download = parsedData.fileName
+            // a.click()
+            // a.remove()
+            // window.URL.revokeObjectURL(url);
+
+            setDownloadLinks((p) => [...p, wrappedElement])
         }, () => {
             const newCode = createRandomCode()
             setCode(newCode.toString())

@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 async function blobToBase64(blob) {
     const arrayBuffer = await blob.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
-    return buffer.toString('base64');
+    return buffer.toString();
 }
 
 exports.handler = async (event) => {
@@ -16,7 +16,7 @@ exports.handler = async (event) => {
     const jsonBody = JSON.parse(event.body)
     const { fileName, contentType, base64File, code } = jsonBody
     
-    const fileBuffer = Buffer.from(base64File, 'base64'); // Lambda sends body as base64
+    const fileBuffer = Buffer.from(base64File); // Lambda sends body as base64
     const blobId = uuidv4()
     
     try {

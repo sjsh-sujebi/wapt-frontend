@@ -5,7 +5,7 @@ import { getStore } from '@netlify/blobs'
 async function blobToBase64(blob) {
     const arrayBuffer = await blob.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
-    return buffer.toString('base64');
+    return buffer.toString();
 }
 
 exports.handler = async (event) => {

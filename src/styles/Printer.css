@@ -41,7 +41,7 @@
 }
 
 .pt_link_wrapper:hover {
-    background-color: rgba(205, 205, 205, 1.0);
+    background-color: rgba(0, 0, 0, 0.153);
     cursor: pointer;
 }
 
@@ -50,7 +50,7 @@
 }
 
 .pt_blockchain_secured:hover {
-    background-color: rgba(10, 161, 91, 0.6) !important;
+    background-color: rgba(10, 161, 90, 0.363) !important;
 }
 
 .pt_empty_links {

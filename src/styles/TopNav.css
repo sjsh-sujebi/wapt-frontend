@@ -9,7 +9,7 @@
     align-items: center;
     min-width: 320px;
     justify-content: space-around;
-    background-color: rgba(0, 0, 0, 0.148);
+    /* background-color: rgba(0, 0, 0, 0.148); */
     position: fixed;
     max-width: 100vw !important;
     width: calc(100vw - 40px);

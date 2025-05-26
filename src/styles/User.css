@@ -4,6 +4,7 @@
     align-items: center;
     max-width: 80vw;
     align-self: center;
+    min-height: 80vh;
 }
 
 .us_even_container {

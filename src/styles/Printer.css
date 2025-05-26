@@ -2,9 +2,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 80vh;
+    justify-content: space-around;
 }
 
-.pt_container > h1 {
+.pt_wrapped_section {
+    text-align: center;
+}
+
+.pt_title {
     margin: 70px;
 }
 

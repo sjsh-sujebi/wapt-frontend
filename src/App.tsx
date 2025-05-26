@@ -37,6 +37,10 @@ function App({child}: {child: JSX.Element}) {
     <div className="App">
       <TopNav hash={hash} toggleMyPage={() => window.location.href = "/mypage"} toggleHome={() => window.location.href = "/"} toggleMenu={() => {}} toggleLogin={() => window.location.href = "/login"} />
       {child}
+      <ins class="kakao_ad_area" style="display:none;"
+data-ad-unit = "DAN-UN6GectaBTSpp8rb"
+data-ad-width = "300"
+data-ad-height = "250"></ins>
       <ins className="kakao_ad_area" style={{display: "none"}}
 data-ad-unit = "DAN-j1XnRWcT8AtchtNp"
 data-ad-width = "320"

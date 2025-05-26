@@ -37,14 +37,16 @@ function App({child}: {child: JSX.Element}) {
     <div className="App">
       <TopNav hash={hash} toggleMyPage={() => window.location.href = "/mypage"} toggleHome={() => window.location.href = "/"} toggleMenu={() => {}} toggleLogin={() => window.location.href = "/login"} />
       {child}
-      <ins className="kakao_ad_area" style={{display: "none"}}
-data-ad-unit = "DAN-UN6GectaBTSpp8rb"
-data-ad-width = "300"
-data-ad-height = "250"></ins>
-      <ins className="kakao_ad_area" style={{display: "none"}}
-data-ad-unit = "DAN-j1XnRWcT8AtchtNp"
-data-ad-width = "320"
-data-ad-height = "100"></ins>
+      <div className="centerme">
+        <ins className="kakao_ad_area" style={{display: "none"}}
+          data-ad-unit = "DAN-UN6GectaBTSpp8rb"
+          data-ad-width = "300"
+          data-ad-height = "250"></ins>
+        <ins className="kakao_ad_area" style={{display: "none"}}
+          data-ad-unit = "DAN-j1XnRWcT8AtchtNp"
+          data-ad-width = "320"
+          data-ad-height = "100"></ins>
+      </div>
 <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
       <BottomFooter />
     </div>

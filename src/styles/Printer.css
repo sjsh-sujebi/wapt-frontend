@@ -8,6 +8,10 @@
 
 .pt_wrapped_section {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .pt_title {

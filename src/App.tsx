@@ -47,7 +47,7 @@ function App({child}: {child: JSX.Element}) {
           data-ad-width = "320"
           data-ad-height = "100"></ins>
         <ins className="kakao_ad_area" style={{display: "none"}}
-          data-ad-unit = "DAN-EQxSkV7N0xlz9ery"
+          data-ad-unit = "DAN-EQxSkV7N0xIz9ery"
           data-ad-width = "320"
           data-ad-height = "100"></ins>
         <ins className="kakao_ad_area" style={{display: "none"}}

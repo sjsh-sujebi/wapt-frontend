@@ -55,7 +55,7 @@ function App({child}: {child: JSX.Element}) {
           data-ad-width = "320"
           data-ad-height = "100"></ins>
       </div>
-<script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+      <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
       <BottomFooter />
     </div>
   );

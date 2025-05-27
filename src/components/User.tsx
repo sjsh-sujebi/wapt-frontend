@@ -121,6 +121,8 @@ function sign_transaction(set_success: (msg: string) => void, myHash: string, se
                             }
                         }
 
+                        set_success(`블록체인에 조각 등록 완료 ${parseInt(chunk) + 1}/${chunks.length}`)
+
                         slices.push(response.payload.blobId)
                         
                         if (parseInt(chunk) == chunks.length - 1) {
